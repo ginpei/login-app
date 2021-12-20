@@ -3,7 +3,7 @@
   "name": "login-app",
   "version": "0.0.0",
   "scripts": {
-    "dev": "lerna run dev",
+    "dev": "lerna run dev --parallel",
     "lint": "eslint . && tsc",
     "start": "echo OK"
   },
