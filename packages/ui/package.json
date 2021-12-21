@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "name": "@login-app/ui",
+  "version": "0.0.0",
+  "main": "out/",
+  "types": "out/",
+  "scripts": {
+    "clean": "rm -rf out/",
+    "dev": "concurrently --names 'JS  ,Type' 'npm run build:js -- --watch' 'npm run build:types -- --watch'",
+    "build:js": "babel src --out-dir out/ --extensions .ts,.tsx --presets @babel/preset-typescript,@babel/preset-react",
+    "build:types": "npx tsc",
+    "build": "concurrently --names 'JS  ,Type' 'npm run build:js' 'npm run build:types'"
+  },
+  "dependencies": {
+    "@types/react": "^17.0.34",
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "concurrently": "^6.3.0",
+    "typescript": "^4.4.4"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^2.2.19"
+  }
+}
