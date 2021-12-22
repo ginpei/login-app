@@ -1,11 +1,44 @@
+import { User } from 'firebase/auth';
 import Head from 'next/head'
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { homePagePath } from '../home/homePageMeta';
+import { auth } from "../../middleware/firebase";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export interface LoginPageProps {
 }
 
 export const LoginPage: React.FC<LoginPageProps> = (props) => {
+  const [loggingIn, setLoggingIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null>(auth.currentUser);
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setCurrentUser(user)
+      console.log('user', user);
+      if (user) {
+        console.log('user logged in');
+      } else {
+        console.log('user logged out');
+      }
+    });
+  }, []);
+
+  const onLoginClick = async () => {
+    const email = 'test@example.com';
+    const password = '123456';
+    setLoggingIn(true);
+    await signInWithEmailAndPassword(auth, email, password);
+    setLoggingIn(false);
+  };
+
+  const onLogoutClick = async () => {
+    setLoggingIn(true);
+    await signOut(auth);
+    setLoggingIn(false);
+  };
+
   return (
     <div className="LoginPage">
       <Head>
@@ -17,6 +50,19 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
       <p>
         <Link href={homePagePath()}>Home</Link>
       </p>
+      {currentUser ? (
+        <p>
+          <button onClick={onLogoutClick} disabled={loggingIn}>
+            {loggingIn ? 'Logging out...' : 'Logout'}
+          </button>
+        </p>
+      ) : (
+        <p>
+          <button onClick={onLoginClick} disabled={loggingIn}>
+            {loggingIn ? 'Logging in...' : 'Login'}
+          </button>
+        </p>
+      )}
     </div>
   );
 };
