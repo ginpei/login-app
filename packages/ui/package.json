@@ -6,10 +6,11 @@
   "types": "out/",
   "scripts": {
     "clean": "rm -rf out/",
-    "dev": "concurrently --names 'JS  ,Type' 'npm run build:js -- --watch' 'npm run build:types -- --watch'",
+    "dev": "concurrently --names 'CSS ,JS  ,Type' 'npm run build:css -- --watch' 'npm run build:js -- --watch' 'npm run build:types -- --watch'",
+    "build:css": "tailwind build --input src/tailwind.css --output out/styles.css",
     "build:js": "babel src --out-dir out/ --extensions .ts,.tsx --presets @babel/preset-typescript,@babel/preset-react",
     "build:types": "npx tsc",
-    "build": "concurrently --names 'JS  ,Type' 'npm run build:js' 'npm run build:types'"
+    "build": "concurrently --names 'CSS ,JS  ,Type' 'npm run build:css' 'npm run build:js' 'npm run build:types'"
   },
   "dependencies": {
     "@types/react": "^17.0.34",
@@ -21,9 +22,7 @@
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
     "concurrently": "^6.3.0",
+    "tailwindcss": "^3.0.7",
     "typescript": "^4.4.4"
-  },
-  "peerDependencies": {
-    "tailwindcss": "^2.2.19"
   }
 }
