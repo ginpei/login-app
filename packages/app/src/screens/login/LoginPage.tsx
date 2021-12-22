@@ -1,5 +1,5 @@
 import { BasicLayout } from '@login-app/ui';
-import { signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { auth } from "../../middleware/firebase";
@@ -11,6 +11,7 @@ export interface LoginPageProps {
 export const LoginPage: React.FC<LoginPageProps> = (props) => {
   const [loggingIn, setLoggingIn] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(auth.currentUser);
+  const [loginError, setLoginError] = useState<Error | null>(null);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -27,15 +28,37 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
   const onLoginClick = async () => {
     const email = 'test@example.com';
     const password = '123456';
-    setLoggingIn(true);
-    await signInWithEmailAndPassword(auth, email, password);
-    setLoggingIn(false);
+    try {
+      setLoginError(null);
+      setLoggingIn(true);
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (errorLike) {
+      const error = errorLike instanceof Error ? errorLike : new Error(String(errorLike));
+      setLoginError(error);
+    } finally {
+      setLoggingIn(false);
+    }
   };
 
   const onLogoutClick = async () => {
     setLoggingIn(true);
     await signOut(auth);
     setLoggingIn(false);
+  };
+
+  const onCreateClick = async () => {
+    const email = 'test@example.com';
+    const password = '123456';
+    try {
+      setLoginError(null);
+      setLoggingIn(true);
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (errorLike) {
+      const error = errorLike instanceof Error ? errorLike : new Error(String(errorLike));
+      setLoginError(error);
+    } finally {
+      setLoggingIn(false);
+    }
   };
 
   return (
@@ -47,6 +70,7 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
       <p>
         User ID: {currentUser?.uid ?? '(not logged in)'}
       </p>
+      {loginError && <p className="text-red-600">{loginError.message}</p>}
       {currentUser ? (
         <p>
           <button onClick={onLogoutClick} disabled={loggingIn}>
@@ -57,6 +81,9 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
         <p>
           <button onClick={onLoginClick} disabled={loggingIn}>
             [{loggingIn ? 'Logging in...' : 'Login'}]
+          </button>
+          <button onClick={onCreateClick} disabled={loggingIn}>
+            [{loggingIn ? 'Logging in...' : 'Create'}]
           </button>
         </p>
       )}

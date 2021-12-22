@@ -2,7 +2,9 @@
   "private": true,
   "name": "@login-app/app",
   "scripts": {
-    "dev": "next dev",
+    "dev:app": "next dev",
+    "dev:firebase": "firebase emulators:start --import=.firebase-emu-data/ --export-on-exit",
+    "dev": "npm run dev:app",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

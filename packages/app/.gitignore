@@ -36,5 +36,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
+# firebase
+.firebase-emu-data/
+
+# Firebase emulator sometimes creates such like this
+firebase-export-*/
+
 # personalization
 .firebaserc

@@ -14,8 +14,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-const emulating = true; // TODO detect
+const emulating = process.env.NODE_ENV !== 'production';
 if (emulating) {
+  console.log('app/src/middleware/firebase.ts: using emulators');
 useEmulators();
 }
 
