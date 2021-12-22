@@ -12,7 +12,7 @@
     "build:types": "npx tsc",
     "build": "concurrently --names 'CSS ,JS  ,Type,SB  ' 'npm run build:css' 'npm run build:js' 'npm run build:types' 'npm run storybook:build'",
     "storybook:build": "build-storybook",
-    "storybook:watch": "start-storybook --port 6006 --ci --quiet --static-dir out/"
+    "storybook:watch": "start-storybook --port 6006 --ci --quiet"
   },
   "dependencies": {
     "@types/react": "^17.0.34",
