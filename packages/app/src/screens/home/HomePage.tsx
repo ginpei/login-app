@@ -15,6 +15,9 @@ export const HomePage: React.FC<HomePageProps> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>HomePage</h1>
+      <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
       <p>
         <Link href={loginPagePath()}>Login</Link>
       </p>
