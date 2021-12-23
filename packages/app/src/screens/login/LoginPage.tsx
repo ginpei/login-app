@@ -1,42 +1,52 @@
 import { BasicLayout } from "@login-app/ui";
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  EmailAuthProvider,
+  GoogleAuthProvider,
   signOut,
   User,
 } from "firebase/auth";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useMemo, useState } from "react";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import { rootPath } from "../../../util/paths";
 import { auth } from "../../middleware/firebase";
 import { homePagePath } from "../home/homePageMeta";
 
+const uiConfigBase: firebaseui.auth.Config = {
+  signInFlow: "popup",
+  signInOptions: [
+    GoogleAuthProvider.PROVIDER_ID,
+    EmailAuthProvider.PROVIDER_ID,
+  ],
+};
+
 export const LoginPage: React.FC = () => {
+  const router = useRouter();
   const [loggingIn, setLoggingIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState<User | null>(auth.currentUser);
-  const [loginError, setLoginError] = useState<Error | null>(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null | undefined>(
+    undefined
+  );
+
+  const uiConfig: firebaseui.auth.Config = useMemo(() => {
+    return {
+      ...uiConfigBase,
+      callbacks: {
+        signInSuccessWithAuthResult() {
+          setLoggedIn(true);
+          router.push(rootPath());
+          return false;
+        },
+      },
+    };
+  }, []);
 
   useEffect(() => {
-    // TODO return unsubscribe
-    auth.onAuthStateChanged((user) => {
+    return auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
     });
   }, []);
-
-  const onLoginClick = async () => {
-    const email = "test@example.com";
-    const password = "123456";
-    try {
-      setLoginError(null);
-      setLoggingIn(true);
-      await signInWithEmailAndPassword(auth, email, password);
-    } catch (errorLike) {
-      const error =
-        errorLike instanceof Error ? errorLike : new Error(String(errorLike));
-      setLoginError(error);
-    } finally {
-      setLoggingIn(false);
-    }
-  };
 
   const onLogoutClick = async () => {
     setLoggingIn(true);
@@ -44,21 +54,9 @@ export const LoginPage: React.FC = () => {
     setLoggingIn(false);
   };
 
-  const onCreateClick = async () => {
-    const email = "test@example.com";
-    const password = "123456";
-    try {
-      setLoginError(null);
-      setLoggingIn(true);
-      await createUserWithEmailAndPassword(auth, email, password);
-    } catch (errorLike) {
-      const error =
-        errorLike instanceof Error ? errorLike : new Error(String(errorLike));
-      setLoginError(error);
-    } finally {
-      setLoggingIn(false);
-    }
-  };
+  if (currentUser === undefined || loggedIn) {
+    return null;
+  }
 
   return (
     <BasicLayout title="LoginPage">
@@ -67,7 +65,6 @@ export const LoginPage: React.FC = () => {
         <Link href={homePagePath()}>Home</Link>
       </p>
       <p>User ID: {currentUser?.uid ?? "(not logged in)"}</p>
-      {loginError && <p className="text-red-600">{loginError.message}</p>}
       {currentUser ? (
         <p>
           <button onClick={onLogoutClick} disabled={loggingIn}>
@@ -75,14 +72,7 @@ export const LoginPage: React.FC = () => {
           </button>
         </p>
       ) : (
-        <p>
-          <button onClick={onLoginClick} disabled={loggingIn}>
-            [{loggingIn ? "Logging in..." : "Login"}]
-          </button>
-          <button onClick={onCreateClick} disabled={loggingIn}>
-            [{loggingIn ? "Logging in..." : "Create"}]
-          </button>
-        </p>
+        <StyledFirebaseAuth firebaseAuth={auth} uiConfig={uiConfig} />
       )}
     </BasicLayout>
   );
