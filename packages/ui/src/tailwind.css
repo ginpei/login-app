@@ -5,3 +5,7 @@
 a {
   @apply underline text-blue-700 hover:text-red-700;
 }
+
+button {
+  @apply focus:shadow-inner focus-visible:ring focus:ring-violet-300;
+}

@@ -8,7 +8,9 @@ export default {
 } as ComponentMeta<typeof NiceButton>;
 
 export const Basic: ComponentStory<typeof NiceButton> = (props) => (
-  <NiceButton {...props} />
+  <>
+    <NiceButton {...props} /> <NiceButton {...props} />
+  </>
 );
 
 Basic.args = {
