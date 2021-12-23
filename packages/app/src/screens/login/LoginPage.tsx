@@ -1,4 +1,4 @@
-import { BasicLayout } from "@login-app/ui";
+import { BasicLayout, NiceButton, NiceHeading, VStack } from "@login-app/ui";
 import {
   EmailAuthProvider,
   GoogleAuthProvider,
@@ -60,20 +60,22 @@ export const LoginPage: React.FC = () => {
 
   return (
     <BasicLayout title="LoginPage">
-      <h1 className="text-3xl font-bold">LoginPage</h1>
-      <p>
-        <Link href={homePagePath()}>Home</Link>
-      </p>
-      <p>User ID: {currentUser?.uid ?? "(not logged in)"}</p>
-      {currentUser ? (
+      <VStack>
+        <NiceHeading>LoginPage</NiceHeading>
         <p>
-          <button onClick={onLogoutClick} disabled={loggingIn}>
-            [{loggingIn ? "Logging out..." : "Logout"}]
-          </button>
+          <Link href={homePagePath()}>Home</Link>
         </p>
-      ) : (
-        <StyledFirebaseAuth firebaseAuth={auth} uiConfig={uiConfig} />
-      )}
+        <p>User ID: {currentUser?.uid ?? "(not logged in)"}</p>
+        {currentUser ? (
+          <p>
+            <NiceButton onClick={onLogoutClick} disabled={loggingIn}>
+              [{loggingIn ? "Logging out..." : "Logout"}]
+            </NiceButton>
+          </p>
+        ) : (
+          <StyledFirebaseAuth firebaseAuth={auth} uiConfig={uiConfig} />
+        )}
+      </VStack>
     </BasicLayout>
   );
 };
