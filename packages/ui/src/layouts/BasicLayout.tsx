@@ -1,4 +1,3 @@
-// import Head from 'next/head';
 import React, { ReactNode } from "react";
 
 export interface BasicLayoutProps {
@@ -17,7 +16,7 @@ export function BasicLayout(props: BasicLayoutProps): JSX.Element {
 
 export function BasicNavBar(): JSX.Element {
   return (
-    <div className="bg-indigo-900 text-white">
+    <div className="bg-ginpen text-white">
       <div className="container mx-auto px-4">Hello</div>
     </div>
   );

@@ -5,7 +5,13 @@ module.exports = {
   rules: {
     "import/no-extraneous-dependencies": [
       "error",
-      { devDependencies: ["**/*.test.{ts,tsx}", "**/*.stories.tsx"] },
+      {
+        devDependencies: [
+          "**/*.test.{ts,tsx}",
+          "**/*.stories.tsx",
+          "**/*.config.js",
+        ],
+      },
     ],
   },
   ignorePatterns: ["out/", "packages/app/functions/"],
