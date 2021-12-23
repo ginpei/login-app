@@ -69,7 +69,7 @@ export const LoginPage: React.FC = () => {
         {currentUser ? (
           <p>
             <NiceButton onClick={onLogoutClick} disabled={loggingIn}>
-              [{loggingIn ? "Logging out..." : "Logout"}]
+              {loggingIn ? "Logging out..." : "Logout"}
             </NiceButton>
           </p>
         ) : (
