@@ -6,6 +6,7 @@ lerna-debug.log
 firebase-debug.log
 firestore-debug.log
 ui-debug.log
+package.json.lerna_backup
 
 # project
 out/
