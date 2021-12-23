@@ -8,4 +8,5 @@ module.exports = {
       { devDependencies: ["**/*.test.{ts,tsx}", "**/*.stories.tsx"] },
     ],
   },
+  ignorePatterns: ["out/"],
 };
