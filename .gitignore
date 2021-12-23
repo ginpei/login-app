@@ -1,12 +1,12 @@
-# packages
-node_modules/
-npm-debug.log
-yarn-error.log
-lerna-debug.log
+# tools
 firebase-debug.log
 firestore-debug.log
-ui-debug.log
+lerna-debug.log
+node_modules/
+npm-debug.log
 package.json.lerna_backup
+ui-debug.log
+yarn-error.log
 
 # project
 out/
