@@ -1,17 +1,13 @@
 import { BasicLayout, NiceButton, NiceHeading, VStack } from "@login-app/ui";
-import {
-  EmailAuthProvider,
-  GoogleAuthProvider,
-  signOut,
-  User,
-} from "firebase/auth";
+import { EmailAuthProvider, GoogleAuthProvider, signOut } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { rootPath } from "../../../util/paths";
 import { auth } from "../../middleware/firebase";
 import { homePagePath } from "../home/homePageMeta";
+import { useCurrentUser } from "./currentUserHooks";
 
 const uiConfigBase: firebaseui.auth.Config = {
   signInFlow: "popup",
@@ -25,9 +21,7 @@ export const LoginPage: React.FC = () => {
   const router = useRouter();
   const [loggingIn, setLoggingIn] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState<User | null | undefined>(
-    undefined
-  );
+  const currentUser = useCurrentUser(auth);
 
   const uiConfig: firebaseui.auth.Config = useMemo(() => {
     return {
@@ -40,12 +34,6 @@ export const LoginPage: React.FC = () => {
         },
       },
     };
-  }, []);
-
-  useEffect(() => {
-    return auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-    });
   }, []);
 
   const onLogoutClick = async () => {
