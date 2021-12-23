@@ -14,12 +14,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-const emulating = process.env.NODE_ENV !== 'production';
+const emulating = process.env.NODE_ENV !== "production";
 if (emulating) {
-  console.log('app/src/middleware/firebase.ts: using emulators');
-useEmulators();
+  console.log("app/src/middleware/firebase.ts: using emulators");
+  useEmulators();
 }
 
 function useEmulators() {
-  connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });
+  connectAuthEmulator(auth, "http://127.0.0.1:9099", { disableWarnings: true });
 }
