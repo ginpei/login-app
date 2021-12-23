@@ -16,6 +16,7 @@ export const auth = getAuth(app);
 
 const emulating = process.env.NODE_ENV !== "production";
 if (emulating) {
+  // eslint-disable-next-line no-console
   console.log("app/src/middleware/firebase.ts: using emulators");
   useEmulators();
 }

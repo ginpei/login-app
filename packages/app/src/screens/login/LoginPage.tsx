@@ -10,22 +10,15 @@ import { useEffect, useState } from "react";
 import { auth } from "../../middleware/firebase";
 import { homePagePath } from "../home/homePageMeta";
 
-export interface LoginPageProps {}
-
-export const LoginPage: React.FC<LoginPageProps> = (props) => {
+export const LoginPage: React.FC = () => {
   const [loggingIn, setLoggingIn] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(auth.currentUser);
   const [loginError, setLoginError] = useState<Error | null>(null);
 
   useEffect(() => {
+    // TODO return unsubscribe
     auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
-      console.log("user", user);
-      if (user) {
-        console.log("user logged in");
-      } else {
-        console.log("user logged out");
-      }
     });
   }, []);
 
