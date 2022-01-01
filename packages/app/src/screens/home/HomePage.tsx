@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { BasicLayout, NiceHeading, VStack } from "@login-app/ui";
+import { BasicLayout, NiceHeading, VStack } from "../../ui";
 import { loginPagePath } from "../login/loginPageMeta";
 
 export const HomePage: React.FC = (props) => {

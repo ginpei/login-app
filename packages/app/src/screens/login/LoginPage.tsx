@@ -1,4 +1,3 @@
-import { BasicLayout, NiceButton, NiceHeading, VStack } from "@login-app/ui";
 import { EmailAuthProvider, GoogleAuthProvider, signOut } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -6,6 +5,7 @@ import { useMemo, useState } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { rootPath } from "../../../util/paths";
 import { auth } from "../../middleware/firebase";
+import { BasicLayout, NiceButton, NiceHeading, VStack } from "../../ui";
 import { homePagePath } from "../home/homePageMeta";
 import { useCurrentUser } from "./currentUserHooks";
 

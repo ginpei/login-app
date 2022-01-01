@@ -1,5 +1,5 @@
 import "../src/misc/tailwind.css";
-import "@login-app/ui/out/styles.css";
+import "../src/ui/tailwind.css";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
