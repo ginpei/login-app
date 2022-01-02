@@ -5,7 +5,7 @@
     "build": "next build",
     "dev:app": "next dev",
     "dev:firebase": "firebase emulators:start --import=.firebase-emu-data/ --export-on-exit",
-    "dev": "npm run dev:app",
+    "dev": "echo npm run dev:app",
     "lint": "next lint",
     "start": "next start"
   },
