@@ -9,7 +9,7 @@
     "build:js": "babel src --out-dir out/ --extensions .ts,.tsx --presets @babel/preset-typescript,@babel/preset-react",
     "build:types": "npx tsc",
     "build": "npm run build:css && npm run build:js && npm run build:types && npm run storybook:build",
-    "clean": "rm -rf out/",
+    "clean": "rm -rf out/ storybook-static/",
     "dev": "concurrently --names 'CSS ,JS  ,Type,SB  ' 'npm run build:css -- --watch' 'npm run build:js -- --watch' 'npm run build:types -- --watch' 'npm run storybook:watch'",
     "lint": "eslint . && tsc",
     "storybook:build": "build-storybook",
