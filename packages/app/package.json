@@ -24,6 +24,7 @@
     "build": "react-scripts build",
     "dev": "BROWSER=none react-scripts start",
     "firebase": "firebase emulators:start --import=.firebase-emu-data/ --export-on-exit",
+    "lint": "tsc && eslint .",
     "test": "react-scripts test"
   },
   "browserslist": {
