@@ -1,10 +1,11 @@
 import { BasicLayout, NiceButton, NiceHeading, VStack } from "@login-app/ui";
 import { EmailAuthProvider, GoogleAuthProvider, signOut } from "firebase/auth";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from '../../misc/firebase';
 import { homePagePath } from "../home/homePageMeta";
+import { useCurrentUser } from "./currentUserHooks";
 
 const uiConfigBase: firebaseui.auth.Config = {
   signInFlow: "popup",
@@ -18,8 +19,7 @@ export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const [loggingIn, setLoggingIn] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  // const currentUser = useCurrentUser(auth);
-  const [currentUser, setCurrentUser] = useState(auth.currentUser);
+  const currentUser = useCurrentUser(auth);
 
   const uiConfig: firebaseui.auth.Config = useMemo(() => {
     return {
@@ -33,10 +33,6 @@ export const LoginPage: React.FC = () => {
       },
     };
   }, [navigate]);
-
-  useEffect(() => {
-    return auth.onAuthStateChanged(setCurrentUser);
-  }, []);
 
   const onLogoutClick = async () => {
     setLoggingIn(true);
