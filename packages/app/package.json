@@ -23,7 +23,6 @@
   "scripts": {
     "build": "react-scripts build",
     "dev": "BROWSER=none react-scripts start",
-    "eject": "react-scripts eject",
     "firebase": "firebase emulators:start --import=.firebase-emu-data/ --export-on-exit",
     "test": "react-scripts test"
   },
