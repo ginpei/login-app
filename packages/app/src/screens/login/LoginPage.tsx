@@ -1,11 +1,9 @@
 import { BasicLayout, NiceButton, NiceHeading, VStack } from "@login-app/ui";
 import { EmailAuthProvider, GoogleAuthProvider, signOut } from "firebase/auth";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { useMemo, useState } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import { rootPath } from "../../../util/paths";
-import { auth } from "../../middleware/firebase";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../misc/firebase";
 import { homePagePath } from "../home/homePageMeta";
 import { useCurrentUser } from "./currentUserHooks";
 
@@ -18,7 +16,7 @@ const uiConfigBase: firebaseui.auth.Config = {
 };
 
 export const LoginPage: React.FC = () => {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [loggingIn, setLoggingIn] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const currentUser = useCurrentUser(auth);
@@ -29,12 +27,12 @@ export const LoginPage: React.FC = () => {
       callbacks: {
         signInSuccessWithAuthResult() {
           setLoggedIn(true);
-          router.push(rootPath());
+          navigate(homePagePath());
           return false;
         },
       },
     };
-  }, []);
+  }, [navigate]);
 
   const onLogoutClick = async () => {
     setLoggingIn(true);
@@ -51,7 +49,7 @@ export const LoginPage: React.FC = () => {
       <VStack>
         <NiceHeading>LoginPage</NiceHeading>
         <p>
-          <Link href={homePagePath()}>Home</Link>
+          <Link to={homePagePath()}>Home</Link>
         </p>
         <p>User ID: {currentUser?.uid ?? "(not logged in)"}</p>
         {currentUser ? (

@@ -1,15 +1,14 @@
-import Head from "next/head";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { BasicLayout, NiceHeading, VStack } from "@login-app/ui";
 import { loginPagePath } from "../login/loginPageMeta";
 
 export const HomePage: React.FC = (props) => {
   return (
-    <BasicLayout title="HomePage">
+    <BasicLayout title="Home">
       <VStack>
-        <NiceHeading>HomePage</NiceHeading>
+        <NiceHeading>Home</NiceHeading>
         <p>
-          <Link href={loginPagePath()}>Login</Link>
+          <Link to={loginPagePath()}>Login</Link>
         </p>
       </VStack>
     </BasicLayout>
