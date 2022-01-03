@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@login-app/ui": "file:../ui",
+    "@login-app/ui": "0.0.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -22,6 +22,7 @@
   },
   "scripts": {
     "build": "react-scripts build",
+    "clean": "rm -rf build/",
     "dev": "BROWSER=none react-scripts start",
     "firebase": "firebase emulators:start --import=.firebase-emu-data/ --export-on-exit",
     "lint": "tsc && eslint .",
