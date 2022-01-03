@@ -32,7 +32,7 @@ export const LoginPage: React.FC = () => {
         },
       },
     };
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     return auth.onAuthStateChanged(setCurrentUser);
