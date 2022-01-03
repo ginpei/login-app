@@ -1,3 +1,3 @@
-export function loginPagePath() {
+export function loginPagePath(): string {
   return "/login";
 }

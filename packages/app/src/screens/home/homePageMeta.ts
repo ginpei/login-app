@@ -1,3 +1,3 @@
-export function homePagePath() {
+export function homePagePath(): string {
   return "/";
 }

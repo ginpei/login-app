@@ -5,7 +5,7 @@ import { LoginPage } from "../screens/login/LoginPage";
 import { loginPagePath } from "../screens/login/loginPageMeta";
 import { NotFoundPage } from "../screens/noteFound/NotFoundPage";
 
-export function AppRouter() {
+export function AppRouter(): JSX.Element {
   return (
     <Router>
       <Routes>
