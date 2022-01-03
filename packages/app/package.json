@@ -27,12 +27,6 @@
     "eject": "react-scripts eject",
     "firebase": "firebase emulators:start --import=.firebase-emu-data/ --export-on-exit"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",

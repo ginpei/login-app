@@ -1,6 +1,4 @@
-import {
-  BrowserRouter as Router, Route, Routes
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { HomePage } from "../screens/home/HomePage";
 import { homePagePath } from "../screens/home/homePageMeta";
 import { LoginPage } from "../screens/login/LoginPage";

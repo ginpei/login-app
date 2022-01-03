@@ -3,7 +3,7 @@ import { EmailAuthProvider, GoogleAuthProvider, signOut } from "firebase/auth";
 import { useMemo, useState } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from '../../misc/firebase';
+import { auth } from "../../misc/firebase";
 import { homePagePath } from "../home/homePageMeta";
 import { useCurrentUser } from "./currentUserHooks";
 

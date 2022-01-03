@@ -1,13 +1,10 @@
-import { Link } from 'react-router-dom';
-import { loginPagePath } from '../login/loginPageMeta';
-import { BasicLayout, NiceHeading, VStack } from '@login-app/ui';
+import { Link } from "react-router-dom";
+import { BasicLayout, NiceHeading, VStack } from "@login-app/ui";
+import { loginPagePath } from "../login/loginPageMeta";
 
-export interface HomePageProps {
-}
-
-export const HomePage: React.FC<HomePageProps> = (props) => {
+export const HomePage: React.FC = (props) => {
   return (
-    <BasicLayout title='Home'>
+    <BasicLayout title="Home">
       <VStack>
         <NiceHeading>Home</NiceHeading>
         <p>
