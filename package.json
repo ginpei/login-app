@@ -6,7 +6,7 @@
     "dev": "lerna run dev --parallel",
     "firebase": "lerna run firebase --stream",
     "lint": "lerna run lint",
-    "reboot": "lerna clean -y && lerna bootstrap && lerna run build",
+    "reboot": "lerna clean -y && lerna bootstrap && cd packages/ui/ && npm link ../app/node_modules/react",
     "start": "echo OK"
   },
   "devDependencies": {
