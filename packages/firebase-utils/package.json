@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "name": "@login-app/firebase-utils",
+  "version": "0.0.0",
+  "main": "out/",
+  "types": "out/",
+  "scripts": {
+    "build:js": "babel src --out-dir out/ --extensions .ts,.tsx --presets @babel/preset-typescript,@babel/preset-react",
+    "build:types": "npx tsc",
+    "build": "concurrently --names 'JS  ,Type' 'npm run build:js' 'npm run build:types'",
+    "clean": "rm -rf out/",
+    "dev": "concurrently --names 'JS  ,Type' 'npm run build:js -- --watch' 'npm run build:types -- --watch'",
+    "lint": "eslint . && tsc"
+  },
+  "dependencies": {
+    "@types/react": "^17.0.34",
+    "firebase": "^9.6.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "babel-loader": "^8.2.3",
+    "concurrently": "^6.3.0",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.4.4"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
+  }
+}
