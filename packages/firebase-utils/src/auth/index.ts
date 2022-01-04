@@ -1,2 +1,2 @@
 export * from "./CurrentUserContext";
-export * from "./currentUserHooks";
+export * from "./firebaseAuthHooks";

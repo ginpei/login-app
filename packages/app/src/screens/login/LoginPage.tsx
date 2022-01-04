@@ -1,9 +1,9 @@
+import { useCurrentUser } from "@login-app/firebase-utils";
 import { BasicLayout, NiceButton, NiceHeading, VStack } from "@login-app/ui";
 import { EmailAuthProvider, GoogleAuthProvider, signOut } from "firebase/auth";
 import { useMemo, useState } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { Link, useNavigate } from "react-router-dom";
-import { useCurrentUser } from "@login-app/firebase-utils";
 import { auth } from "../../misc/firebase";
 import { homePagePath } from "../home/homePageMeta";
 
@@ -19,7 +19,7 @@ export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const [loggingIn, setLoggingIn] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const currentUser = useCurrentUser(auth);
+  const currentUser = useCurrentUser();
 
   const uiConfig: firebaseui.auth.Config = useMemo(() => {
     return {
