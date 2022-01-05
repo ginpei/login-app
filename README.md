@@ -7,6 +7,11 @@ $ npm ci
 $ npx lerna bootstrap
 ```
 
+And prepare followings:
+
+- `packages/app/.env.local`
+- `packages/app/.firebaserc`
+
 ## Start
 
 You'll need two terminal windows.
