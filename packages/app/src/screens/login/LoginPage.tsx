@@ -6,6 +6,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../misc/firebase";
 import { homePagePath } from "../home/homePageMeta";
+import { loadUserProfile } from "./fn";
 
 const uiConfigBase: firebaseui.auth.Config = {
   signInFlow: "popup",
@@ -56,6 +57,12 @@ export const LoginPage: React.FC = () => {
           <p>
             <NiceButton onClick={onLogoutClick} disabled={loggingIn}>
               {loggingIn ? "Logging out..." : "Logout"}
+            </NiceButton>{" "}
+            <NiceButton
+              onClick={() => loadUserProfile(currentUser)}
+              disabled={loggingIn}
+            >
+              Load user profile
             </NiceButton>
           </p>
         ) : (
