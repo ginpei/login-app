@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "lerna run dev --parallel",
-    "firebase": "lerna run firebase --stream",
+    "firebase": "cd packages/app && npm run firebase",
     "lint": "lerna run lint",
     "reboot": "lerna clean -y && lerna bootstrap && cd packages/firebase-utils/ && npm link ../app/node_modules/react && cd ../ui/ && npm link ../app/node_modules/react",
     "start": "echo OK"
