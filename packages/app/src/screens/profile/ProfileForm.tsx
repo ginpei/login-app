@@ -1,3 +1,4 @@
+import { sleep } from "@login-app/misc";
 import { NiceButton, TextField, VStack } from "@login-app/ui";
 import {
   collection,
@@ -131,8 +132,4 @@ async function saveProfile(userId: string, profile: Profile): Promise<void> {
   };
 
   await setDoc(refDoc, data);
-}
-
-function sleep(ms: number): Promise<void> {
-  return new Promise((v) => window.setTimeout(v, ms));
 }

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@login-app/firebase-utils": "0.0.0",
+    "@login-app/misc": "^0.0.0",
     "@login-app/ui": "0.0.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
