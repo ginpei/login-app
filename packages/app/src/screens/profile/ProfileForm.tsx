@@ -61,7 +61,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
   }, [currentProfile]);
 
   if (profileError) {
-    return <ErrorBox errors={[profileError, new Error("hehehe")]} />;
+    return <ErrorBox errors={[profileError]} />;
   }
 
   if (!profile) {
