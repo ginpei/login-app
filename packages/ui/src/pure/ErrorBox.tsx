@@ -18,7 +18,7 @@ export const ErrorBox: React.FC<ErrorBoxProps> = ({ errors, title }) => {
       </div>
       <ul className="flex flex-col gap-4">
         {errors.map((error) => (
-          <li>{error.message}</li>
+          <li key={error.message}>{error.message}</li>
         ))}
       </ul>
     </section>
