@@ -1,5 +1,5 @@
 import { sleep, toError } from "@login-app/misc";
-import { NiceButton, TextField, VStack } from "@login-app/ui";
+import { ErrorBox, NiceButton, TextField, VStack } from "@login-app/ui";
 import {
   collection,
   doc,
@@ -61,12 +61,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
   }, [currentProfile]);
 
   if (profileError) {
-    return (
-      <VStack>
-        <h2>Error</h2>
-        <div>{profileError.message}</div>
-      </VStack>
-    );
+    return <ErrorBox errors={[profileError, new Error("hehehe")]} />;
   }
 
   if (!profile) {
