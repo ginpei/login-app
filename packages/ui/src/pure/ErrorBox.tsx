@@ -1,5 +1,5 @@
 import React from "react";
-import { NiceHeading } from "../pure/NiceHeading";
+import { NiceHeading } from "../primitive/NiceHeading";
 
 export interface ErrorBoxProps {
   errors: Error[];
