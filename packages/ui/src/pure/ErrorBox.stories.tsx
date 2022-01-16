@@ -8,9 +8,10 @@ export default {
 } as ComponentMeta<typeof ErrorBox>;
 
 export const Basic: ComponentStory<typeof ErrorBox> = (props) => (
-  <ErrorBox {...props} errors={[new Error("Something went wrong")]} />
+  <ErrorBox {...props} />
 );
 
 Basic.args = {
+  errors: [{ message: "Something went wrong" }] as Error[],
   title: "",
 };
