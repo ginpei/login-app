@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { NiceHeading } from "./NiceHeading";
 
 export default {
-  title: "Pure/NiceHeading",
+  title: "Primitive/NiceHeading",
   component: NiceHeading,
 } as ComponentMeta<typeof NiceHeading>;
 

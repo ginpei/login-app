@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { NiceButton } from "./NiceButton";
 
 export default {
-  title: "Pure/NiceButton",
+  title: "Primitive/NiceButton",
   component: NiceButton,
 } as ComponentMeta<typeof NiceButton>;
 
