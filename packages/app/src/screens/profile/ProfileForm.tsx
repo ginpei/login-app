@@ -1,4 +1,4 @@
-import { sleep } from "@login-app/misc";
+import { sleep, toError } from "@login-app/misc";
 import { NiceButton, TextField, VStack } from "@login-app/ui";
 import {
   collection,
@@ -42,10 +42,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
     setSaving(true);
     try {
       await Promise.all([sleep(1000), saveProfile(userId, profile)]);
-    } catch (errorish) {
-      const error =
-        errorish instanceof Error ? errorish : new Error(String(errorish));
-      setSaveError(error);
+    } catch (error) {
+      setSaveError(toError(error));
     } finally {
       setSaving(false);
     }
