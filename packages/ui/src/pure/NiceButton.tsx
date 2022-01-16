@@ -11,9 +11,9 @@ export const NiceButton: React.FC<NiceButtonProps> = ({
       className={`
         ${className}
         focus:bg-blue-100
-        border-2 border-ginpen hover:border-current active:border-current
+        border-2 border-ginpen hover:border-current active:border-current disabled:border-gray-300
         px-4 py-2
-        text-ginpen hover:text-red-700 active:text-red-400
+        text-ginpen hover:text-red-700 active:text-red-400 disabled:text-gray-500
       `}
       {...props}
     />

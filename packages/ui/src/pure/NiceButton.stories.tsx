@@ -15,4 +15,5 @@ export const Basic: ComponentStory<typeof NiceButton> = (props) => (
 
 Basic.args = {
   children: "Nice Button",
+  disabled: false,
 };
