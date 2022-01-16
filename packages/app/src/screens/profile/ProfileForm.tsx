@@ -3,14 +3,12 @@ import { NiceButton, TextField, VStack } from "@login-app/ui";
 import {
   collection,
   doc,
-  DocumentReference,
   getDoc,
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
 import {
   ChangeEventHandler,
-  EventHandler,
   FormEventHandler,
   useEffect,
   useState,
