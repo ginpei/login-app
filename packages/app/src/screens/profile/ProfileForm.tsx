@@ -1,6 +1,19 @@
 import { NiceButton, TextField, VStack } from "@login-app/ui";
-import { collection, doc, getDoc } from "firebase/firestore";
-import { ChangeEventHandler, useEffect, useState } from "react";
+import {
+  collection,
+  doc,
+  DocumentReference,
+  getDoc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
+import {
+  ChangeEventHandler,
+  EventHandler,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { db } from "../../misc/firebase";
 
 export interface ProfileFormProps {
@@ -15,6 +28,27 @@ export interface Profile {
 export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
   const [currentProfile, profileError] = useProfile(userId);
   const [profile, setProfile] = useState<Profile | undefined>(currentProfile);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<Error | null>(null);
+
+  const onSubmit: FormEventHandler = async (event) => {
+    event.preventDefault();
+
+    if (!profile) {
+      return;
+    }
+
+    setSaving(true);
+    try {
+      await Promise.all([sleep(1000), saveProfile(userId, profile)]);
+    } catch (errorish) {
+      const error =
+        errorish instanceof Error ? errorish : new Error(String(errorish));
+      setSaveError(error);
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const onValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const { name, value } = event.currentTarget;
@@ -43,17 +77,19 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
   }
 
   return (
-    <form className="ProfileForm">
-      <VStack>
-        <p>User ID: {userId}</p>
-        <TextField
-          label="Display name"
-          name="name"
-          onChange={onValueChange}
-          value={profile.name}
-        />
-        <NiceButton>Save</NiceButton>
-      </VStack>
+    <form className="ProfileForm" onSubmit={onSubmit}>
+      <fieldset disabled={saving}>
+        <VStack>
+          <p>User ID: {userId}</p>
+          <TextField
+            label="Display name"
+            name="name"
+            onChange={onValueChange}
+            value={profile.name}
+          />
+          <NiceButton>Save</NiceButton>
+        </VStack>
+      </fieldset>
     </form>
   );
 };
@@ -83,4 +119,20 @@ function useProfile(userId: string): [Profile | undefined, Error | null] {
   }, [userId]);
 
   return [profile, error];
+}
+
+async function saveProfile(userId: string, profile: Profile): Promise<void> {
+  const refColl = collection(db, "profiles");
+  const refDoc = doc(refColl, userId);
+
+  const data = {
+    ...profile,
+    updatedAt: serverTimestamp(),
+  };
+
+  await setDoc(refDoc, data);
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((v) => window.setTimeout(v, ms));
 }
