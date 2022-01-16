@@ -60,10 +60,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
     setProfile(currentProfile);
   }, [currentProfile]);
 
-  if (!profile) {
-    return <>…</>;
-  }
-
   if (profileError) {
     return (
       <VStack>
@@ -71,6 +67,10 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
         <div>{profileError.message}</div>
       </VStack>
     );
+  }
+
+  if (!profile) {
+    return <>…</>;
   }
 
   return (
