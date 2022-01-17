@@ -11,7 +11,7 @@ export function BasicNavBar({
 }: BasicNavBarProps): JSX.Element {
   return (
     <div className="bg-ginpen text-white ">
-      <div className="container mx-auto px-4 flex justify-between">
+      <div className="container mx-auto px-4 py-2 flex justify-between">
         {primary}
         {secondary}
       </div>
