@@ -1,16 +1,11 @@
 import { useCurrentUser } from "@login-app/firebase-utils";
 import { sleep, toError } from "@login-app/misc";
-import {
-  BasicLayout,
-  ErrorBox,
-  NiceButton,
-  NiceHeading,
-  VStack,
-} from "@login-app/ui";
+import { ErrorBox, NiceButton, NiceHeading, VStack } from "@login-app/ui";
 import { EmailAuthProvider, GoogleAuthProvider, signOut } from "firebase/auth";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../misc/firebase";
+import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";
 import { homePagePath } from "../home/homePageMeta";
 
@@ -61,7 +56,7 @@ function LogoutScreen() {
   };
 
   return (
-    <BasicLayout title="Logout">
+    <AppBasicLayout title="Logout">
       <VStack>
         <NiceHeading>Logout</NiceHeading>
         {logoutError && <ErrorBox errors={[logoutError]} />}
@@ -71,6 +66,6 @@ function LogoutScreen() {
           </NiceButton>
         </p>
       </VStack>
-    </BasicLayout>
+    </AppBasicLayout>
   );
 }

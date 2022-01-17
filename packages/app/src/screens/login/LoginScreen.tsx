@@ -1,8 +1,9 @@
-import { BasicLayout, NiceHeading, VStack } from "@login-app/ui";
+import { NiceHeading, VStack } from "@login-app/ui";
 import { EmailAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useMemo } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { auth } from "../../misc/firebase";
+import { AppBasicLayout } from "../appBasicLayout/AppBasicLayout";
 
 const uiConfigBase: firebaseui.auth.Config = {
   signInFlow: "popup",
@@ -31,11 +32,11 @@ export const LoginScreen: React.VFC<LoginScreenProps> = (props) => {
   }, []);
 
   return (
-    <BasicLayout title={props.title}>
+    <AppBasicLayout title={props.title}>
       <VStack>
         <NiceHeading>{props.title}</NiceHeading>
         <StyledFirebaseAuth firebaseAuth={auth} uiConfig={uiConfig} />
       </VStack>
-    </BasicLayout>
+    </AppBasicLayout>
   );
 };

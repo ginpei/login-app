@@ -1,11 +1,12 @@
+import { NiceHeading, VStack } from "@login-app/ui";
 import { Link } from "react-router-dom";
-import { BasicLayout, NiceHeading, VStack } from "@login-app/ui";
+import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { loginPagePath } from "../login/loginPageMeta";
 import { ProfilePagePath } from "../profile/profilePageMeta";
 
 export const HomePage: React.FC = (props) => {
   return (
-    <BasicLayout title="Home">
+    <AppBasicLayout title="Home">
       <VStack>
         <NiceHeading>Home</NiceHeading>
         <p>
@@ -15,6 +16,6 @@ export const HomePage: React.FC = (props) => {
           <Link to={ProfilePagePath()}>Profile</Link>
         </p>
       </VStack>
-    </BasicLayout>
+    </AppBasicLayout>
   );
 };
