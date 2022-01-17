@@ -75,7 +75,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
             onChange={onValueChange}
             value={profile.name}
           />
-          <NiceButton>Save</NiceButton>
+          <NiceButton primary>Save</NiceButton>
         </VStack>
       </fieldset>
     </form>
