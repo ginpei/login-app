@@ -1,5 +1,5 @@
 import { NiceHeading, VStack } from "@login-app/ui";
-import { EmailAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import { EmailAuthProvider, GoogleAuthProvider, User } from "firebase/auth";
 import { useMemo } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { auth } from "../../misc/firebase";
@@ -14,6 +14,7 @@ const uiConfigBase: firebaseui.auth.Config = {
 };
 
 export interface LoginScreenProps {
+  loginUser: User | null;
   onLogIn?: () => void;
   title: string;
 }
@@ -32,7 +33,7 @@ export const LoginScreen: React.VFC<LoginScreenProps> = (props) => {
   }, []);
 
   return (
-    <AppBasicLayout title={props.title}>
+    <AppBasicLayout loginUser={props.loginUser} title={props.title}>
       <VStack>
         <NiceHeading>{props.title}</NiceHeading>
         <StyledFirebaseAuth firebaseAuth={auth} uiConfig={uiConfig} />

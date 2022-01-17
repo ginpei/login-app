@@ -30,13 +30,16 @@ export const LoginPage: React.FC = () => {
   }
 
   if (!currentUser) {
-    return <LoginScreen onLogIn={onLogIn} title="Login" />;
+    return (
+      <LoginScreen loginUser={currentUser} onLogIn={onLogIn} title="Login" />
+    );
   }
 
   return <LogoutScreen />;
 };
 
 function LogoutScreen() {
+  const currentUser = useCurrentUser();
   const [loggingIn, setLoggingIn] = useState(false);
   const [logoutError, setLogoutError] = useState<Error | null>(null);
 
@@ -56,7 +59,7 @@ function LogoutScreen() {
   };
 
   return (
-    <AppBasicLayout title="Logout">
+    <AppBasicLayout loginUser={currentUser} title="Logout">
       <VStack>
         <NiceHeading>Logout</NiceHeading>
         {logoutError && <ErrorBox errors={[logoutError]} />}

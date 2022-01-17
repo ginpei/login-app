@@ -8,11 +8,11 @@ export const ProfilePage: React.FC = (props) => {
   const currentUser = useCurrentUser();
 
   if (!currentUser) {
-    return <LoginScreen title="Profile" />;
+    return <LoginScreen loginUser={currentUser} title="Profile" />;
   }
 
   return (
-    <AppBasicLayout title="Profile">
+    <AppBasicLayout loginUser={currentUser} title="Profile">
       <VStack>
         <NiceHeading>Profile</NiceHeading>
         <ProfileForm userId={currentUser.uid} />
