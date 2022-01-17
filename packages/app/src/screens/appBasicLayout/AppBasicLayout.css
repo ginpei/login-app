@@ -1,0 +1,9 @@
+.AppBasicLayout-NavBar-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.AppBasicLayout-NavBar-link:hover {
+  color: inherit;
+  text-decoration: underline;
+}
