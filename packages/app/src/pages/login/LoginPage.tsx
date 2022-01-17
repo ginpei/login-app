@@ -1,9 +1,9 @@
-import { useCurrentUser } from "@login-app/firebase-utils";
 import { sleep, toError } from "@login-app/misc";
 import { ErrorBox, NiceButton, NiceHeading, VStack } from "@login-app/ui";
 import { EmailAuthProvider, GoogleAuthProvider, signOut } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLoginUser } from "../../data/LoginUserHooks";
 import { auth } from "../../misc/firebase";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";
@@ -19,27 +19,25 @@ const uiConfigBase: firebaseui.auth.Config = {
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
-  const currentUser = useCurrentUser();
+  const loginUser = useLoginUser();
 
   const onLogIn = () => {
     navigate(homePagePath());
   };
 
-  if (currentUser === undefined) {
+  if (loginUser === undefined) {
     return null;
   }
 
-  if (!currentUser) {
-    return (
-      <LoginScreen loginUser={currentUser} onLogIn={onLogIn} title="Login" />
-    );
+  if (!loginUser) {
+    return <LoginScreen loginUser={null} onLogIn={onLogIn} title="Login" />;
   }
 
   return <LogoutScreen />;
 };
 
 function LogoutScreen() {
-  const currentUser = useCurrentUser();
+  const loginUser = useLoginUser();
   const [loggingIn, setLoggingIn] = useState(false);
   const [logoutError, setLogoutError] = useState<Error | null>(null);
 
@@ -59,7 +57,7 @@ function LogoutScreen() {
   };
 
   return (
-    <AppBasicLayout loginUser={currentUser} title="Logout">
+    <AppBasicLayout loginUser={loginUser} title="Logout">
       <VStack>
         <NiceHeading>Logout</NiceHeading>
         {logoutError && <ErrorBox errors={[logoutError]} />}

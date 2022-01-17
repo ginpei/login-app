@@ -13,15 +13,11 @@ import {
   useEffect,
   useState,
 } from "react";
+import { Profile } from "../../data/Profile";
 import { db } from "../../misc/firebase";
 
 export interface ProfileFormProps {
   userId: string;
-}
-
-// TODO move to data folder
-export interface Profile {
-  name: string;
 }
 
 export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {

@@ -1,13 +1,13 @@
 import { BasicLayout } from "@login-app/ui";
-import { User } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { LoginUser } from "../../data/LoginUser";
 import { homePagePath } from "../../pages/home/homePageMeta";
 import { loginPagePath } from "../../pages/login/loginPageMeta";
 import { ProfilePagePath } from "../../pages/profile/profilePageMeta";
 import "./AppBasicLayout.css";
 
 export interface AppBasicLayoutProps {
-  loginUser: User | null;
+  loginUser: LoginUser | null;
   title: string;
 }
 
