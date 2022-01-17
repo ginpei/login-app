@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { VStack } from "../pure/VStack";
+import { BasicNavBar } from "./BasicNavBar";
 
 export interface BasicLayoutProps {
   children: ReactNode;
@@ -12,13 +13,5 @@ export function BasicLayout(props: BasicLayoutProps): JSX.Element {
       <BasicNavBar />
       <main className="container mx-auto px-4">{props.children}</main>
     </VStack>
-  );
-}
-
-export function BasicNavBar(): JSX.Element {
-  return (
-    <div className="bg-ginpen text-white">
-      <div className="container mx-auto px-4">Hello</div>
-    </div>
   );
 }
