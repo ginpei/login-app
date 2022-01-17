@@ -1,4 +1,4 @@
-import { ErrorBox, NiceHeading, VStack } from "@login-app/ui";
+import { ErrorBox, LineClamp, NiceHeading, VStack } from "@login-app/ui";
 import { useLoginUser } from "../../data/LoginUserHooks";
 import { Note } from "../../data/Note";
 import { usePublicNotes } from "../../data/noteHooks";
@@ -48,16 +48,9 @@ const NoteListItem: React.VFC<{ note: Note }> = ({ note }) => {
   return (
     <div>
       <p>{note.title}</p>
-      <p
-        style={{
-          display: "-webkit-box",
-          overflow: "hidden",
-          WebkitBoxOrient: "vertical",
-          WebkitLineClamp: 2,
-        }}
-      >
+      <LineClamp lines={3}>
         <small>{note.body}</small>
-      </p>
+      </LineClamp>
     </div>
   );
 };
