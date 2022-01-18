@@ -5,7 +5,7 @@ import { LoginPage } from "../pages/login/LoginPage";
 import { loginPagePath } from "../pages/login/loginPageMeta";
 import { NewNotePage } from "../pages/newNote/NewNotePage";
 import { newNotePagePath } from "../pages/newNote/newNotePageMeta";
-import { NotFoundPage } from "../pages/noteFound/NotFoundPage";
+import { NotFoundPage } from "../pages/notFound/NotFoundPage";
 import { ProfilePage } from "../pages/profile/ProfilePage";
 import { ProfilePagePath } from "../pages/profile/profilePageMeta";
 import { PublicNoteListPage } from "../pages/publicNoteList/PublicNoteListPage";
