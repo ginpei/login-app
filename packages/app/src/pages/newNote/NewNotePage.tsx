@@ -6,16 +6,22 @@ import { createNote, Note, NoteHandler } from "../../data/Note";
 import { saveNote } from "../../data/noteDb";
 import { logError } from "../../misc/log";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
+import { LoginScreen } from "../../screens/login/LoginScreen";
 import { NoteForm } from "./NoteForm";
 
 export const NewNotePage: React.VFC = () => {
+  const title = "New note";
   const loginUser = useLoginUser();
   const [error, setError] = useState<Error | null>(null);
 
+  if (!loginUser) {
+    return <LoginScreen title={title} />;
+  }
+
   return (
-    <AppBasicLayout loginUser={loginUser} title="Home">
+    <AppBasicLayout loginUser={loginUser} title={title}>
       <VStack>
-        <NiceHeading>New note</NiceHeading>
+        <NiceHeading>{title}</NiceHeading>
         {error && <ErrorBox errors={[error]} />}
         <NoteAutoForm onError={setError} />
       </VStack>

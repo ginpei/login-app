@@ -19,10 +19,6 @@ export const PublicNoteListPage: React.VFC = () => {
   const loginUser = useLoginUser();
   const [notes, notesError] = usePublicNotes();
 
-  if (!loginUser) {
-    return <LoginScreen title={title} />;
-  }
-
   if (!notes) {
     return <LoadingScreen title={title} />;
   }
