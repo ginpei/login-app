@@ -10,18 +10,24 @@ import { useLoginUser } from "../../data/LoginUserHooks";
 import { Note } from "../../data/Note";
 import { usePublicNotes } from "../../data/noteHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
+import { LoginScreen } from "../../screens/login/LoginScreen";
 import { newNotePagePath } from "../newNote/newNotePageMeta";
 
 export const PublicNoteListPage: React.VFC = () => {
+  const title = "Public notes";
   const loginUser = useLoginUser();
   const [notes, notesError] = usePublicNotes();
 
+  if (!loginUser) {
+    return <LoginScreen title={title} />;
+  }
+
   if (!notes) {
-    return <LoadingScreen title="Public notes" />;
+    return <LoadingScreen title={title} />;
   }
 
   return (
-    <AppBasicLayout loginUser={loginUser} title="Home">
+    <AppBasicLayout loginUser={loginUser} title={title}>
       <VStack>
         <NiceHeading>Public notes</NiceHeading>
         <p>
