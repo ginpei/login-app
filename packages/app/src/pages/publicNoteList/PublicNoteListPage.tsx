@@ -1,9 +1,14 @@
-import { ErrorBox, LineClamp, NiceHeading, VStack } from "@login-app/ui";
+import {
+  ErrorBox,
+  LineClamp,
+  LoadingScreen,
+  NiceHeading,
+  VStack,
+} from "@login-app/ui";
 import { useLoginUser } from "../../data/LoginUserHooks";
 import { Note } from "../../data/Note";
 import { usePublicNotes } from "../../data/noteHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
-import { LoadingScreen } from "../../screens/loading/LoadingScreen";
 
 export const PublicNoteListPage: React.VFC = () => {
   const loginUser = useLoginUser();

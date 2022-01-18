@@ -1,4 +1,5 @@
-import { BasicLayout } from "@login-app/ui";
+import React from "react";
+import { BasicLayout } from "../basicLayout/BasicLayout";
 
 export interface LoadingScreenProps {
   title: string;

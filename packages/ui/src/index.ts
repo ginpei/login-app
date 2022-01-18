@@ -1,5 +1,6 @@
 export * from "./composite/TextField";
 export * from "./layouts/basicLayout/BasicLayout";
+export * from "./layouts/loadingScreen/LoadingScreen";
 export * from "./primitive/NiceButton";
 export * from "./primitive/NiceHeading";
 export * from "./primitive/NiceTextInput";

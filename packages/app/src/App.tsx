@@ -2,11 +2,11 @@ import {
   CurrentUserScreen,
   useFirebaseAuthCurrentUser,
 } from "@login-app/firebase-utils";
+import { LoadingScreen } from "@login-app/ui";
 import "@login-app/ui/out/styles.css";
 import React from "react";
 import { auth } from "./misc/firebase";
 import { AppRouter } from "./misc/router";
-import { LoadingScreen } from "./screens/loading/LoadingScreen";
 
 function App(): JSX.Element {
   const currentUser = useFirebaseAuthCurrentUser(auth);
