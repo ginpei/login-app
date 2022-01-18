@@ -30,7 +30,7 @@ export const LoginPage: React.FC = () => {
   }
 
   if (!loginUser) {
-    return <LoginScreen loginUser={null} onLogIn={onLogIn} title="Login" />;
+    return <LoginScreen onLogIn={onLogIn} title="Login" />;
   }
 
   return <LogoutScreen />;

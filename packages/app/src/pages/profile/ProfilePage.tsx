@@ -8,7 +8,7 @@ export const ProfilePage: React.FC = (props) => {
   const loginUser = useLoginUser();
 
   if (!loginUser) {
-    return <LoginScreen loginUser={loginUser} title="Profile" />;
+    return <LoginScreen title="Profile" />;
   }
 
   return (
