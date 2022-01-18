@@ -15,15 +15,17 @@ export type NoteDocument = DocumentReference<Note>;
 const noteDataConverter: FirestoreDataConverter<Note> = {
   fromFirestore(ss) {
     const data = ss.data();
-    return createNote(data);
+    return createNote({ ...data, id: ss.id });
   },
 
-  toFirestore(note) {
-    return {
+  toFirestore(note: Note) {
+    const data: Omit<Note, "id"> = {
       body: note.body,
       shareLevel: note.shareLevel,
       title: note.title,
+      userId: note.userId,
     };
+    return data;
   },
 };
 
