@@ -1,8 +1,8 @@
 import { sleep } from "@login-app/misc/out";
-import { getDocs, query, where } from "firebase/firestore";
+import { getDoc, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Note } from "./Note";
-import { getNoteCollection } from "./noteDb";
+import { getNoteCollection, getNoteDoc } from "./noteDb";
 
 export function usePublicNotes(): [Note[] | undefined, Error | null] {
   const [notes, setNotes] = useState<Note[] | undefined>(undefined);
@@ -26,4 +26,33 @@ export function usePublicNotes(): [Note[] | undefined, Error | null] {
   }, []);
 
   return [notes, error];
+}
+
+export function useNote(
+  noteId: string | undefined
+): [Note | null | undefined, Error | null] {
+  const [note, setNote] = useState<Note | null | undefined>(undefined);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    setNote(undefined);
+    setError(null);
+
+    if (!noteId) {
+      return;
+    }
+
+    const doc = getNoteDoc(noteId);
+    getDoc(doc)
+      .then((ss) => {
+        const newNotes = ss.data();
+        setNote(newNotes || null);
+      })
+      .catch((newError) => {
+        setNote(null);
+        setError(newError);
+      });
+  }, [noteId]);
+
+  return [note, error];
 }

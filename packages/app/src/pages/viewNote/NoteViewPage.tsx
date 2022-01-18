@@ -5,43 +5,53 @@ import {
   NiceHeading,
   VStack,
 } from "@login-app/ui";
-import { Link } from "react-router-dom";
+import { Link, useParams, useRoutes } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserHooks";
 import { createNote, Note } from "../../data/Note";
-import { usePublicNotes } from "../../data/noteHooks";
+import { useNote, usePublicNotes } from "../../data/noteHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";
 import { newNotePagePath } from "../newNote/newNotePageMeta";
+import { NotFoundPage } from "../notFound/NotFoundPage";
+import { publicNoteListPagePath } from "../publicNoteList/publicNoteListPageMeta";
 
 export const NoteViewPage: React.VFC = () => {
+  const { noteId } = useParams<"noteId">();
   const loginUser = useLoginUser();
-  const note = createNote();
+  const [note, noteError] = useNote(noteId);
 
-  const noteTitle = note.title || "(Untitled)";
-
-  if (!loginUser) {
-    return <LoginScreen title="Note" />;
-  }
+  const noteTitle = note?.title || "(Untitled)";
 
   if (note === undefined) {
     return <LoadingScreen title="Note" />;
   }
 
+  if (noteError) {
+    // TODO ErrorScreen
+    return (
+      <AppBasicLayout loginUser={loginUser} title={noteTitle}>
+        <VStack>
+          <p>
+            <Link to={publicNoteListPagePath()}>Public note list</Link>
+          </p>
+          {noteError && <ErrorBox errors={[noteError]} />}
+        </VStack>
+      </AppBasicLayout>
+    );
+  }
+
   if (note === null) {
-    // TODO
-    return <div>Not found</div>;
+    return <NotFoundPage />;
   }
 
   return (
     <AppBasicLayout loginUser={loginUser} title={noteTitle}>
       <VStack>
+        <p>
+          <Link to={publicNoteListPagePath()}>Public note list</Link>
+        </p>
         <NiceHeading>{noteTitle}</NiceHeading>
         <p>{note.body || <small>(Empty)</small>}</p>
-        {/* {notesError ? (
-          <ErrorBox errors={[notesError]} />
-        ) : (
-          <NoteList notes={notes} />
-        )} */}
       </VStack>
     </AppBasicLayout>
   );

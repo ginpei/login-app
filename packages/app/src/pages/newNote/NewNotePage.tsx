@@ -1,12 +1,14 @@
 import { sleep, toError } from "@login-app/misc/out";
 import { ErrorBox, NiceHeading, VStack } from "@login-app/ui";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserHooks";
 import { createNote, Note, NoteHandler } from "../../data/Note";
 import { saveNote } from "../../data/noteDb";
 import { logError } from "../../misc/log";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";
+import { noteViewPagePath } from "../viewNote/noteViewPageMeta";
 import { NoteForm } from "./NoteForm";
 
 export const NewNotePage: React.VFC = () => {
@@ -32,6 +34,7 @@ export const NewNotePage: React.VFC = () => {
 const NoteAutoForm: React.VFC<{
   onError: (error: Error | null) => void;
 }> = ({ onError }) => {
+  const navigate = useNavigate();
   const user = useLoginUser();
   const [note, setNote] = useState(createNote({ shareLevel: "public" }));
   const [saving, setSaving] = useState(false);
@@ -54,8 +57,9 @@ const NoteAutoForm: React.VFC<{
       };
       const [, noteDoc] = await Promise.all([sleep(200), saveNote(userNote)]);
       const { id } = noteDoc;
-      window.alert(`Note: ${id}`);
-      // TODO locate to note view page
+
+      const url = noteViewPagePath(id);
+      navigate(url);
     } catch (errorish) {
       const error = toError(errorish);
       logError(error);
