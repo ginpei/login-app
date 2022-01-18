@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { VStack } from "../pure/VStack";
+import { VStack } from "../../pure/VStack";
 import { BasicNavBar, BasicNavBarProps } from "./BasicNavBar";
 
 export interface BasicLayoutProps {
