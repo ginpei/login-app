@@ -6,10 +6,10 @@ import { useLoginUser } from "../../data/LoginUserHooks";
 import { createNote, Note, NoteHandler } from "../../data/Note";
 import { saveNote } from "../../data/noteDb";
 import { logError } from "../../misc/log";
+import { NoteForm } from "../../models/note/NoteForm";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";
 import { noteViewPagePath } from "../viewNote/noteViewPageMeta";
-import { NoteForm } from "./NoteForm";
 
 export const NewNotePage: React.VFC = () => {
   const title = "New note";
