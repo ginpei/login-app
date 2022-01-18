@@ -3,6 +3,7 @@ import { ErrorBox, NiceHeading, VStack } from "@login-app/ui";
 import { useState } from "react";
 import { useLoginUser } from "../../data/LoginUserHooks";
 import { createNote, NoteHandler } from "../../data/Note";
+import { logError } from "../../misc/log";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { NoteForm } from "./NoteForm";
 
@@ -39,9 +40,11 @@ const NoteAutoForm: React.VFC<{
       await sleep(500);
       console.log("# note", note);
       throw new Error("Ho ho ho");
-    } catch (newError) {
-      console.error(newError);
-      onError(toError(newError));
+    } catch (errorish) {
+      const error = toError(errorish);
+      logError(error);
+      onError(error);
+
       setSaving(false);
     }
   };
