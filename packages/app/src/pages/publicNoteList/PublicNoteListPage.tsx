@@ -5,10 +5,12 @@ import {
   NiceHeading,
   VStack,
 } from "@login-app/ui";
+import { Link } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserHooks";
 import { Note } from "../../data/Note";
 import { usePublicNotes } from "../../data/noteHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
+import { newNotePagePath } from "../newNote/newNotePageMeta";
 
 export const PublicNoteListPage: React.VFC = () => {
   const loginUser = useLoginUser();
@@ -22,6 +24,9 @@ export const PublicNoteListPage: React.VFC = () => {
     <AppBasicLayout loginUser={loginUser} title="Home">
       <VStack>
         <NiceHeading>Public notes</NiceHeading>
+        <p>
+          <Link to={newNotePagePath()}>New note...</Link>
+        </p>
         {notesError ? (
           <ErrorBox errors={[notesError]} />
         ) : (
