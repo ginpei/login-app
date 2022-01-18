@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { NoteEditPage } from "../pages/editNote/NoteEditPage";
+import { noteEditPageRoute } from "../pages/editNote/noteEditPageMeta";
 import { HomePage } from "../pages/home/HomePage";
 import { homePagePath } from "../pages/home/homePageMeta";
 import { LoginPage } from "../pages/login/LoginPage";
@@ -26,6 +28,7 @@ export function AppRouter(): JSX.Element {
         />
         <Route path={newNotePagePath()} element={<NewNotePage />} />
         <Route path={noteViewPageRoute} element={<NoteViewPage />} />
+        <Route path={noteEditPageRoute} element={<NoteEditPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
