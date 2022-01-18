@@ -7,38 +7,41 @@ import {
 } from "@login-app/ui";
 import { Link } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserHooks";
-import { Note } from "../../data/Note";
+import { createNote, Note } from "../../data/Note";
 import { usePublicNotes } from "../../data/noteHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";
 import { newNotePagePath } from "../newNote/newNotePageMeta";
-import { noteViewPagePath } from "../viewNote/noteViewPageMeta";
 
-export const PublicNoteListPage: React.VFC = () => {
-  const title = "Public notes";
+export const NoteViewPage: React.VFC = () => {
   const loginUser = useLoginUser();
-  const [notes, notesError] = usePublicNotes();
+  const note = createNote();
+
+  const noteTitle = note.title || "(Untitled)";
 
   if (!loginUser) {
-    return <LoginScreen title={title} />;
+    return <LoginScreen title="Note" />;
   }
 
-  if (!notes) {
-    return <LoadingScreen title={title} />;
+  if (note === undefined) {
+    return <LoadingScreen title="Note" />;
+  }
+
+  if (note === null) {
+    // TODO
+    return <div>Not found</div>;
   }
 
   return (
-    <AppBasicLayout loginUser={loginUser} title={title}>
+    <AppBasicLayout loginUser={loginUser} title={noteTitle}>
       <VStack>
-        <NiceHeading>Public notes</NiceHeading>
-        <p>
-          <Link to={newNotePagePath()}>New note...</Link>
-        </p>
-        {notesError ? (
+        <NiceHeading>{noteTitle}</NiceHeading>
+        <p>{note.body || <small>(Empty)</small>}</p>
+        {/* {notesError ? (
           <ErrorBox errors={[notesError]} />
         ) : (
           <NoteList notes={notes} />
-        )}
+        )} */}
       </VStack>
     </AppBasicLayout>
   );
@@ -64,11 +67,11 @@ const NoteList: React.VFC<{ notes: Note[] }> = ({ notes }) => {
 
 const NoteListItem: React.VFC<{ note: Note }> = ({ note }) => {
   return (
-    <Link to={noteViewPagePath(note.id)}>
+    <div>
       <p>{note.title}</p>
       <LineClamp lines={3}>
         <small>{note.body}</small>
       </LineClamp>
-    </Link>
+    </div>
   );
 };

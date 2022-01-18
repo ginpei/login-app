@@ -10,6 +10,8 @@ import { ProfilePage } from "../pages/profile/ProfilePage";
 import { ProfilePagePath } from "../pages/profile/profilePageMeta";
 import { PublicNoteListPage } from "../pages/publicNoteList/PublicNoteListPage";
 import { publicNoteListPagePath } from "../pages/publicNoteList/publicNoteListPageMeta";
+import { NoteViewPage } from "../pages/viewNote/NoteViewPage";
+import { noteViewPageRoute } from "../pages/viewNote/noteViewPageMeta";
 
 export function AppRouter(): JSX.Element {
   return (
@@ -23,6 +25,7 @@ export function AppRouter(): JSX.Element {
           element={<PublicNoteListPage />}
         />
         <Route path={newNotePagePath()} element={<NewNotePage />} />
+        <Route path={noteViewPageRoute} element={<NoteViewPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
