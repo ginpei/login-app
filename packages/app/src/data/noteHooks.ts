@@ -13,9 +13,7 @@ export function usePublicNotes(): [Note[] | undefined, Error | null] {
     setError(null);
 
     const coll = getNoteCollection();
-    // TODO get only public items
-    const q = coll;
-    // const q = query(coll, where("shareLevel", "==", "public"));
+    const q = query(coll, where("shareLevel", "==", "public"));
     getDocs(q)
       .then((ss) => {
         const newNotes = ss.docs.map((v) => v.data());

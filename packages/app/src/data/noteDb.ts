@@ -21,6 +21,7 @@ const noteDataConverter: FirestoreDataConverter<Note> = {
   toFirestore(note) {
     return {
       body: note.body,
+      shareLevel: note.shareLevel,
       title: note.title,
     };
   },

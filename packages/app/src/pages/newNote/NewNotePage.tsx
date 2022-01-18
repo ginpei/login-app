@@ -27,7 +27,7 @@ const NoteAutoForm: React.VFC<{
   onError: (error: Error | null) => void;
 }> = ({ onError }) => {
   const user = useLoginUser();
-  const [note, setNote] = useState(createNote());
+  const [note, setNote] = useState(createNote({ shareLevel: "public" }));
   const [saving, setSaving] = useState(false);
 
   const onChange: NoteHandler = (newNote) => {

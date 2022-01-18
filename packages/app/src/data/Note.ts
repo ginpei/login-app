@@ -6,9 +6,11 @@ export interface Note {
   userId: string;
 }
 
-export type NoteShareLevel = "public" | "private";
+export type NoteShareLevel = typeof noteShareLevels[number];
 
 export type NoteHandler = (note: Note) => void;
+
+const noteShareLevels = ["public", "private"] as const;
 
 export function createNote(initial: Partial<Note> = {}): Note {
   return {
@@ -18,4 +20,13 @@ export function createNote(initial: Partial<Note> = {}): Note {
     title: initial.title ?? "",
     userId: initial.userId ?? "",
   };
+}
+
+export function isNoteShareLevel(
+  shareLevel: unknown
+): shareLevel is NoteShareLevel {
+  return (
+    typeof shareLevel === "string" &&
+    noteShareLevels.map((v) => String(v)).includes(shareLevel)
+  );
 }

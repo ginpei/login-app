@@ -1,6 +1,6 @@
 import { NiceButton, TextField, VStack } from "@login-app/ui";
 import { ChangeEventHandler, FormEventHandler } from "react";
-import { Note, NoteHandler } from "../../data/Note";
+import { isNoteShareLevel, Note, NoteHandler } from "../../data/Note";
 
 export interface NoteFormProps {
   disabled?: boolean;
@@ -20,12 +20,19 @@ export const NoteForm: React.FC<NoteFormProps> = ({
     onSubmit(note);
   };
 
-  const onValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+  const onValueChange: ChangeEventHandler<
+    HTMLInputElement | HTMLSelectElement
+  > = (event) => {
     const { name, value } = event.currentTarget;
     if (name === "title") {
       onChange({ ...note, title: value });
     } else if (name === "body") {
       onChange({ ...note, body: value });
+    } else if (name === "shareLevel") {
+      if (!isNoteShareLevel(value)) {
+        throw new Error(`Unknown share level: ${value}`);
+      }
+      onChange({ ...note, shareLevel: value });
     } else {
       throw new Error(`Unknown name: ${name || "(not set)"}`);
     }
@@ -47,6 +54,19 @@ export const NoteForm: React.FC<NoteFormProps> = ({
             onChange={onValueChange}
             value={note.body}
           />
+          <label>
+            <VStack>
+              Share level
+              <select
+                name="shareLevel"
+                onChange={onValueChange}
+                value={note.shareLevel}
+              >
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+              </select>
+            </VStack>
+          </label>
           <NiceButton primary>Save</NiceButton>
         </VStack>
       </fieldset>
