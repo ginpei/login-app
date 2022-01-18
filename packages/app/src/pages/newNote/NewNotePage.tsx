@@ -2,7 +2,8 @@ import { sleep, toError } from "@login-app/misc/out";
 import { ErrorBox, NiceHeading, VStack } from "@login-app/ui";
 import { useState } from "react";
 import { useLoginUser } from "../../data/LoginUserHooks";
-import { createNote, NoteHandler } from "../../data/Note";
+import { createNote, Note, NoteHandler } from "../../data/Note";
+import { saveNote } from "../../data/noteDb";
 import { logError } from "../../misc/log";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { NoteForm } from "./NoteForm";
@@ -25,6 +26,7 @@ export const NewNotePage: React.VFC = () => {
 const NoteAutoForm: React.VFC<{
   onError: (error: Error | null) => void;
 }> = ({ onError }) => {
+  const user = useLoginUser();
   const [note, setNote] = useState(createNote());
   const [saving, setSaving] = useState(false);
 
@@ -36,10 +38,18 @@ const NoteAutoForm: React.VFC<{
     onError(null);
     setSaving(true);
     try {
-      // TODO implement
-      await sleep(500);
-      console.log("# note", note);
-      throw new Error("Ho ho ho");
+      if (!user) {
+        throw new Error("Login required");
+      }
+
+      const userNote: Note = {
+        ...note,
+        userId: user.id,
+      };
+      const [, noteDoc] = await Promise.all([sleep(200), saveNote(userNote)]);
+      const { id } = noteDoc;
+      window.alert(`Note: ${id}`);
+      // TODO locate to note view page
     } catch (errorish) {
       const error = toError(errorish);
       logError(error);
