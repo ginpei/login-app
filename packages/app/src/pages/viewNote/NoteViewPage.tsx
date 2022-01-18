@@ -5,13 +5,11 @@ import {
   NiceHeading,
   VStack,
 } from "@login-app/ui";
-import { Link, useParams, useRoutes } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserHooks";
-import { createNote, Note } from "../../data/Note";
-import { useNote, usePublicNotes } from "../../data/noteHooks";
+import { Note } from "../../data/Note";
+import { useNote } from "../../data/noteHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
-import { LoginScreen } from "../../screens/login/LoginScreen";
-import { newNotePagePath } from "../newNote/newNotePageMeta";
 import { NotFoundPage } from "../notFound/NotFoundPage";
 import { publicNoteListPagePath } from "../publicNoteList/publicNoteListPageMeta";
 
