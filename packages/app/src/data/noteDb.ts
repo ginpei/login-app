@@ -18,13 +18,8 @@ const noteDataConverter: FirestoreDataConverter<Note> = {
     return createNote({ ...data, id: ss.id });
   },
 
-  toFirestore(note: Note) {
-    const data: Omit<Note, "id"> = {
-      body: note.body,
-      shareLevel: note.shareLevel,
-      title: note.title,
-      userId: note.userId,
-    };
+  toFirestore(note) {
+    const { id, ...data } = note;
     return data;
   },
 };
