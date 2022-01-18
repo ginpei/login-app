@@ -1,7 +1,8 @@
-export const NotFoundPage: React.FC = () => {
-  return (
-    <div className="NotFoundPage">
-      <h1>Not found</h1>
-    </div>
-  );
+import { useLoginUser } from "../../data/LoginUserHooks";
+import { NotFoundScreen } from "../../screens/notFound/NotFoundScreen";
+
+export const NotFoundPage: React.VFC = () => {
+  const loginUser = useLoginUser();
+
+  return <NotFoundScreen loginUser={loginUser} />;
 };
