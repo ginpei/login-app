@@ -1,28 +1,30 @@
 import { sleep } from "@login-app/misc/out";
+import { getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Note } from "./Note";
+import { getNoteCollection } from "./noteDb";
 
 export function usePublicNotes(): [Note[] | undefined, Error | null] {
   const [notes, setNotes] = useState<Note[] | undefined>(undefined);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    sleep(200).then(() => {
-      setNotes([
-        {
-          body: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate illo ab debitis ipsa. Quis blanditiis eius eveniet! Quibusdam ex fugiat sint, laudantium enim, laboriosam dicta praesentium porro odit et blanditiis.",
-          id: "note-001",
-          title: "My first note",
-          userId: "user-001",
-        },
-        {
-          body: "Numquam, laudantium. Architecto dolor sequi deserunt tempore. Voluptatum, dolorem laudantium tempora, sequi nisi culpa aliquid repudiandae modi, quo ex error qui veniam. Nihil, repellat corporis? Doloribus reiciendis atque voluptatum consequatur. Ex, voluptate repellat. Quibusdam eius tempore, officia asperiores hic expedita esse necessitatibus fuga, non corrupti dolorem praesentium cum eos sunt exercitationem earum repellat illo recusandae quasi doloremque veniam repudiandae! Magni! Quas amet laboriosam molestias molestiae natus pariatur deleniti recusandae rem at quisquam id, aspernatur iure exercitationem consequatur architecto! Et ea excepturi quod explicabo pariatur culpa laudantium dolore atque! Praesentium, placeat?",
-          id: "note-002",
-          title: "Hello world!",
-          userId: "user-001",
-        },
-      ]);
-    });
+    setNotes(undefined);
+    setError(null);
+
+    const coll = getNoteCollection();
+    // TODO get only public items
+    const q = coll;
+    // const q = query(coll, where("shareLevel", "==", "public"));
+    getDocs(q)
+      .then((ss) => {
+        const newNotes = ss.docs.map((v) => v.data());
+        setNotes(newNotes);
+      })
+      .catch((newError) => {
+        setNotes([]);
+        setError(newError);
+      });
   }, []);
 
   return [notes, error];
