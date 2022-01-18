@@ -6,12 +6,13 @@ import "@login-app/ui/out/styles.css";
 import React from "react";
 import { auth } from "./misc/firebase";
 import { AppRouter } from "./misc/router";
+import { LoadingScreen } from "./screens/loading/LoadingScreen";
 
 function App(): JSX.Element {
   const currentUser = useFirebaseAuthCurrentUser(auth);
 
   if (currentUser === undefined) {
-    return <div>…</div>;
+    return <LoadingScreen title="" />;
   }
 
   return (

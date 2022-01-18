@@ -3,13 +3,14 @@ import { useLoginUser } from "../../data/LoginUserHooks";
 import { Note } from "../../data/Note";
 import { usePublicNotes } from "../../data/noteHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
+import { LoadingScreen } from "../../screens/loading/LoadingScreen";
 
 export const PublicNoteListPage: React.VFC = () => {
   const loginUser = useLoginUser();
   const [notes, notesError] = usePublicNotes();
 
   if (!notes) {
-    return <>...</>;
+    return <LoadingScreen title="Public notes" />;
   }
 
   return (
