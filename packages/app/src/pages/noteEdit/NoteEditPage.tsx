@@ -1,11 +1,5 @@
 import { sleep, toError } from "@login-app/misc/out";
-import {
-  ErrorBox,
-  LineClamp,
-  LoadingScreen,
-  NiceHeading,
-  VStack,
-} from "@login-app/ui";
+import { ErrorBox, LoadingScreen, NiceHeading, VStack } from "@login-app/ui";
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserHooks";
@@ -15,9 +9,9 @@ import { useNote } from "../../data/noteHooks";
 import { logError } from "../../misc/log";
 import { NoteForm } from "../../models/note/NoteForm";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
+import { notePublicListPagePath } from "../notePublicList/notePublicListPageMeta";
+import { noteViewPagePath } from "../noteView/noteViewPageMeta";
 import { NotFoundPage } from "../notFound/NotFoundPage";
-import { publicNoteListPagePath } from "../publicNoteList/publicNoteListPageMeta";
-import { noteViewPagePath } from "../viewNote/noteViewPageMeta";
 
 export const NoteEditPage: React.VFC = () => {
   const { noteId } = useParams<"noteId">();
@@ -34,7 +28,7 @@ export const NoteEditPage: React.VFC = () => {
       <AppBasicLayout loginUser={loginUser} title="Edit note">
         <VStack>
           <p>
-            <Link to={publicNoteListPagePath()}>Public note list</Link>
+            <Link to={notePublicListPagePath()}>Public note list</Link>
           </p>
           {noteError && <ErrorBox errors={[noteError]} />}
         </VStack>
@@ -50,7 +44,7 @@ export const NoteEditPage: React.VFC = () => {
     <AppBasicLayout loginUser={loginUser} title="Edit note">
       <VStack>
         <p>
-          <Link to={publicNoteListPagePath()}>Public note list</Link>
+          <Link to={notePublicListPagePath()}>Public note list</Link>
         </p>
         <NiceHeading>Edit note</NiceHeading>
         <NoteAutoForm originalNote={note} />

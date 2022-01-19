@@ -1,4 +1,4 @@
-import { NiceButton, TextField, VStack } from "@login-app/ui";
+import { NiceButton, SelectField, TextField, VStack } from "@login-app/ui";
 import { ChangeEventHandler, FormEventHandler } from "react";
 import { isNoteShareLevel, Note, NoteHandler } from "../../data/Note";
 
@@ -54,19 +54,15 @@ export const NoteForm: React.FC<NoteFormProps> = ({
             onChange={onValueChange}
             value={note.body}
           />
-          <label>
-            <VStack>
-              Share level
-              <select
-                name="shareLevel"
-                onChange={onValueChange}
-                value={note.shareLevel}
-              >
-                <option value="public">Public</option>
-                <option value="private">Private</option>
-              </select>
-            </VStack>
-          </label>
+          <SelectField
+            label="Share level"
+            name="shareLevel"
+            onChange={onValueChange}
+            value={note.shareLevel}
+          >
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </SelectField>
           <NiceButton primary>Save</NiceButton>
         </VStack>
       </fieldset>

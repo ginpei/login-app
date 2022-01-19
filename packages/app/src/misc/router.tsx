@@ -1,19 +1,19 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { NoteEditPage } from "../pages/editNote/NoteEditPage";
-import { noteEditPageRoute } from "../pages/editNote/noteEditPageMeta";
 import { HomePage } from "../pages/home/HomePage";
 import { homePagePath } from "../pages/home/homePageMeta";
 import { LoginPage } from "../pages/login/LoginPage";
 import { loginPagePath } from "../pages/login/loginPageMeta";
-import { NewNotePage } from "../pages/newNote/NewNotePage";
-import { newNotePagePath } from "../pages/newNote/newNotePageMeta";
+import { NoteEditPage } from "../pages/noteEdit/NoteEditPage";
+import { noteEditPageRoute } from "../pages/noteEdit/noteEditPageMeta";
+import { NoteNewPage } from "../pages/noteNew/NoteNewPage";
+import { noteNewPagePath } from "../pages/noteNew/noteNewPageMeta";
+import { NotePublicListPage } from "../pages/notePublicList/NotePublicListPage";
+import { notePublicListPagePath } from "../pages/notePublicList/notePublicListPageMeta";
+import { NoteViewPage } from "../pages/noteView/NoteViewPage";
+import { noteViewPageRoute } from "../pages/noteView/noteViewPageMeta";
 import { NotFoundPage } from "../pages/notFound/NotFoundPage";
 import { ProfilePage } from "../pages/profile/ProfilePage";
 import { ProfilePagePath } from "../pages/profile/profilePageMeta";
-import { PublicNoteListPage } from "../pages/publicNoteList/PublicNoteListPage";
-import { publicNoteListPagePath } from "../pages/publicNoteList/publicNoteListPageMeta";
-import { NoteViewPage } from "../pages/viewNote/NoteViewPage";
-import { noteViewPageRoute } from "../pages/viewNote/noteViewPageMeta";
 
 export function AppRouter(): JSX.Element {
   return (
@@ -23,10 +23,10 @@ export function AppRouter(): JSX.Element {
         <Route path={loginPagePath()} element={<LoginPage />} />
         <Route path={ProfilePagePath()} element={<ProfilePage />} />
         <Route
-          path={publicNoteListPagePath()}
-          element={<PublicNoteListPage />}
+          path={notePublicListPagePath()}
+          element={<NotePublicListPage />}
         />
-        <Route path={newNotePagePath()} element={<NewNotePage />} />
+        <Route path={noteNewPagePath()} element={<NoteNewPage />} />
         <Route path={noteViewPageRoute} element={<NoteViewPage />} />
         <Route path={noteEditPageRoute} element={<NoteEditPage />} />
         <Route path="*" element={<NotFoundPage />} />

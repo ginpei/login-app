@@ -10,9 +10,9 @@ import { useLoginUser } from "../../data/LoginUserHooks";
 import { Note } from "../../data/Note";
 import { useNote } from "../../data/noteHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
-import { noteEditPagePath } from "../editNote/noteEditPageMeta";
+import { noteEditPagePath } from "../noteEdit/noteEditPageMeta";
+import { notePublicListPagePath } from "../notePublicList/notePublicListPageMeta";
 import { NotFoundPage } from "../notFound/NotFoundPage";
-import { publicNoteListPagePath } from "../publicNoteList/publicNoteListPageMeta";
 
 export const NoteViewPage: React.VFC = () => {
   const { noteId } = useParams<"noteId">();
@@ -31,7 +31,7 @@ export const NoteViewPage: React.VFC = () => {
       <AppBasicLayout loginUser={loginUser} title={noteTitle}>
         <VStack>
           <p>
-            <Link to={publicNoteListPagePath()}>Public note list</Link>
+            <Link to={notePublicListPagePath()}>Public note list</Link>
           </p>
           {noteError && <ErrorBox errors={[noteError]} />}
         </VStack>
@@ -47,7 +47,7 @@ export const NoteViewPage: React.VFC = () => {
     <AppBasicLayout loginUser={loginUser} title={noteTitle}>
       <VStack>
         <p>
-          <Link to={publicNoteListPagePath()}>Public note list</Link>
+          <Link to={notePublicListPagePath()}>Public note list</Link>
           {" | "}
           <Link to={noteEditPagePath(note.id)}>Edit</Link>
         </p>

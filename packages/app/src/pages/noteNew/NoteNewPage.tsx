@@ -9,9 +9,9 @@ import { logError } from "../../misc/log";
 import { NoteForm } from "../../models/note/NoteForm";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";
-import { noteViewPagePath } from "../viewNote/noteViewPageMeta";
+import { noteViewPagePath } from "../noteView/noteViewPageMeta";
 
-export const NewNotePage: React.VFC = () => {
+export const NoteNewPage: React.VFC = () => {
   const title = "New note";
   const loginUser = useLoginUser();
   const [error, setError] = useState<Error | null>(null);

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { loginPagePath } from "../login/loginPageMeta";
+import { notePublicListPagePath } from "../notePublicList/notePublicListPageMeta";
 import { ProfilePagePath } from "../profile/profilePageMeta";
-import { publicNoteListPagePath } from "../publicNoteList/publicNoteListPageMeta";
 
 export const HomePage: React.FC = (props) => {
   const loginUser = useLoginUser();
@@ -20,7 +20,7 @@ export const HomePage: React.FC = (props) => {
           <Link to={ProfilePagePath()}>Profile</Link>
         </p>
         <p>
-          <Link to={publicNoteListPagePath()}>Public notes</Link>
+          <Link to={notePublicListPagePath()}>Public notes</Link>
         </p>
       </VStack>
     </AppBasicLayout>

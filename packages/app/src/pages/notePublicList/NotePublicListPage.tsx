@@ -10,11 +10,10 @@ import { useLoginUser } from "../../data/LoginUserHooks";
 import { Note } from "../../data/Note";
 import { usePublicNotes } from "../../data/noteHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
-import { LoginScreen } from "../../screens/login/LoginScreen";
-import { newNotePagePath } from "../newNote/newNotePageMeta";
-import { noteViewPagePath } from "../viewNote/noteViewPageMeta";
+import { noteNewPagePath } from "../noteNew/noteNewPageMeta";
+import { noteViewPagePath } from "../noteView/noteViewPageMeta";
 
-export const PublicNoteListPage: React.VFC = () => {
+export const NotePublicListPage: React.VFC = () => {
   const title = "Public notes";
   const loginUser = useLoginUser();
   const [notes, notesError] = usePublicNotes();
@@ -28,7 +27,7 @@ export const PublicNoteListPage: React.VFC = () => {
       <VStack>
         <NiceHeading>Public notes</NiceHeading>
         <p>
-          <Link to={newNotePagePath()}>New note...</Link>
+          <Link to={noteNewPagePath()}>New note...</Link>
         </p>
         {notesError ? (
           <ErrorBox errors={[notesError]} />
