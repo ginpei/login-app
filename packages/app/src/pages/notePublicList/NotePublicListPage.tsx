@@ -26,9 +26,11 @@ export const NotePublicListPage: React.VFC = () => {
     <AppBasicLayout loginUser={loginUser} title={title}>
       <VStack>
         <NiceHeading>Public notes</NiceHeading>
-        <p>
-          <Link to={noteNewPagePath()}>New note...</Link>
-        </p>
+        {loginUser && (
+          <p>
+            <Link to={noteNewPagePath()}>New note...</Link>
+          </p>
+        )}
         {notesError ? (
           <ErrorBox errors={[notesError]} />
         ) : (

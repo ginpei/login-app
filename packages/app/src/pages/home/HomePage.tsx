@@ -16,20 +16,17 @@ export const HomePage: React.FC = (props) => {
       <VStack>
         <NiceHeading>Home</NiceHeading>
         <p>
-          <Link to={loginPagePath()}>Login</Link>
-        </p>
-        <p>
-          <Link to={dashboardPagePath()}>Dashboard</Link>
-        </p>
-        <p>
-          <Link to={ProfilePagePath()}>Profile</Link>
-        </p>
-        <p>
-          <Link to={noteMyListPagePath()}>My notes</Link>
-        </p>
-        <p>
           <Link to={notePublicListPagePath()}>Public notes</Link>
         </p>
+        {loginUser ? (
+          <p>
+            <Link to={dashboardPagePath()}>Dashboard</Link>
+          </p>
+        ) : (
+          <p>
+            <Link to={loginPagePath()}>Login</Link>
+          </p>
+        )}
       </VStack>
     </AppBasicLayout>
   );

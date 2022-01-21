@@ -48,8 +48,12 @@ export const NoteViewPage: React.VFC = () => {
       <VStack>
         <p>
           <Link to={notePublicListPagePath()}>Public note list</Link>
-          {" | "}
-          <Link to={noteEditPagePath(note.id)}>Edit</Link>
+          {note.userId === loginUser?.id && (
+            <>
+              {" | "}
+              <Link to={noteEditPagePath(note.id)}>Edit</Link>
+            </>
+          )}
         </p>
         <NiceHeading>{noteTitle}</NiceHeading>
         <p>{note.body || <small>(Empty)</small>}</p>
