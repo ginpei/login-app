@@ -2,6 +2,7 @@ import {
   addDoc,
   collection,
   CollectionReference,
+  deleteDoc,
   doc as fbDoc,
   DocumentReference,
   FirestoreDataConverter,
@@ -43,4 +44,9 @@ export async function saveNote(note: Note): Promise<NoteDocument> {
 
   const coll = getNoteCollection();
   return addDoc(coll, note);
+}
+
+export async function deleteNote(noteId: string): Promise<void> {
+  const doc = getNoteDoc(noteId);
+  return deleteDoc(doc);
 }
