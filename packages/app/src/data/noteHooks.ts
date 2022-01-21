@@ -29,7 +29,7 @@ export function useUserNotes(
         setNotes([]);
         setError(newError);
       });
-  }, []);
+  }, [userId]);
 
   return [notes, error];
 }
