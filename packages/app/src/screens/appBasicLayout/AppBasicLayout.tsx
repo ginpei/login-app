@@ -1,9 +1,9 @@
 import { BasicLayout } from "@login-app/ui";
 import { Link } from "react-router-dom";
 import { LoginUser } from "../../data/LoginUser";
+import { dashboardPagePath } from "../../pages/dashboard/dashboardPageMeta";
 import { homePagePath } from "../../pages/home/homePageMeta";
 import { loginPagePath } from "../../pages/login/loginPageMeta";
-import { ProfilePagePath } from "../../pages/profile/profilePageMeta";
 import "./AppBasicLayout.css";
 
 export interface AppBasicLayoutProps {
@@ -25,8 +25,8 @@ export const AppBasicLayout: React.FC<AppBasicLayoutProps> = ({
       }
       navSecondary={
         loginUser ? (
-          <Link className="AppBasicLayout-NavBar-link" to={ProfilePagePath()}>
-            Profile
+          <Link className="AppBasicLayout-NavBar-link" to={dashboardPagePath()}>
+            Dashboard
           </Link>
         ) : (
           <Link className="AppBasicLayout-NavBar-link" to={loginPagePath()}>

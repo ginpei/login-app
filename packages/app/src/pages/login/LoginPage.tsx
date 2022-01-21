@@ -7,7 +7,7 @@ import { useLoginUser } from "../../data/LoginUserHooks";
 import { auth } from "../../misc/firebase";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";
-import { homePagePath } from "../home/homePageMeta";
+import { dashboardPagePath } from "../dashboard/dashboardPageMeta";
 
 const uiConfigBase: firebaseui.auth.Config = {
   signInFlow: "popup",
@@ -22,7 +22,7 @@ export const LoginPage: React.FC = () => {
   const loginUser = useLoginUser();
 
   const onLogIn = () => {
-    navigate(homePagePath());
+    navigate(dashboardPagePath());
   };
 
   if (loginUser === undefined) {
