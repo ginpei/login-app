@@ -1,3 +1,3 @@
 export function ProfilePagePath(): string {
-  return "/profile";
+  return "/my/profile";
 }
