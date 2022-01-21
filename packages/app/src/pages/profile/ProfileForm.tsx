@@ -68,6 +68,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
     <form className="ProfileForm" onSubmit={onSubmit}>
       <fieldset disabled={saving}>
         <VStack>
+          {saveError && <ErrorBox errors={[saveError]} />}
           <p>User ID: {userId}</p>
           <TextField
             label="Display name"
