@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { DashboardPage } from "../pages/dashboard/DashboardPage";
+import { dashboardPagePath } from "../pages/dashboard/dashboardPageMeta";
 import { HomePage } from "../pages/home/HomePage";
 import { homePagePath } from "../pages/home/homePageMeta";
 import { LoginPage } from "../pages/login/LoginPage";
@@ -23,6 +25,7 @@ export function AppRouter(): JSX.Element {
       <Routes>
         <Route path={homePagePath()} element={<HomePage />} />
         <Route path={loginPagePath()} element={<LoginPage />} />
+        <Route path={dashboardPagePath()} element={<DashboardPage />} />
         <Route path={ProfilePagePath()} element={<ProfilePage />} />
         <Route path={noteMyListPagePath()} element={<NoteMyListPage />} />
         <Route

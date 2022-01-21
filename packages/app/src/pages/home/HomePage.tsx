@@ -2,6 +2,7 @@ import { NiceHeading, VStack } from "@login-app/ui";
 import { Link } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
+import { dashboardPagePath } from "../dashboard/dashboardPageMeta";
 import { loginPagePath } from "../login/loginPageMeta";
 import { noteMyListPagePath } from "../noteMyList/notePublicListPageMeta";
 import { notePublicListPagePath } from "../notePublicList/notePublicListPageMeta";
@@ -16,6 +17,9 @@ export const HomePage: React.FC = (props) => {
         <NiceHeading>Home</NiceHeading>
         <p>
           <Link to={loginPagePath()}>Login</Link>
+        </p>
+        <p>
+          <Link to={dashboardPagePath()}>Dashboard</Link>
         </p>
         <p>
           <Link to={ProfilePagePath()}>Profile</Link>
