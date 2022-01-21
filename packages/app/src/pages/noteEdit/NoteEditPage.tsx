@@ -40,6 +40,14 @@ export const NoteEditPage: React.VFC = () => {
     return <NotFoundPage />;
   }
 
+  if (!loginUser || note.userId !== loginUser.id) {
+    return (
+      <AppBasicLayout loginUser={loginUser} title="Edit note">
+        <NiceHeading>Unauthorized</NiceHeading>
+      </AppBasicLayout>
+    );
+  }
+
   return (
     <AppBasicLayout loginUser={loginUser} title="Edit note">
       <VStack>
