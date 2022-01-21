@@ -5,6 +5,8 @@ import { LoginPage } from "../pages/login/LoginPage";
 import { loginPagePath } from "../pages/login/loginPageMeta";
 import { NoteEditPage } from "../pages/noteEdit/NoteEditPage";
 import { noteEditPageRoute } from "../pages/noteEdit/noteEditPageMeta";
+import { NoteMyListPage } from "../pages/noteMyList/NoteMyLisPage";
+import { noteMyListPagePath } from "../pages/noteMyList/notePublicListPageMeta";
 import { NoteNewPage } from "../pages/noteNew/NoteNewPage";
 import { noteNewPagePath } from "../pages/noteNew/noteNewPageMeta";
 import { NotePublicListPage } from "../pages/notePublicList/NotePublicListPage";
@@ -22,6 +24,7 @@ export function AppRouter(): JSX.Element {
         <Route path={homePagePath()} element={<HomePage />} />
         <Route path={loginPagePath()} element={<LoginPage />} />
         <Route path={ProfilePagePath()} element={<ProfilePage />} />
+        <Route path={noteMyListPagePath()} element={<NoteMyListPage />} />
         <Route
           path={notePublicListPagePath()}
           element={<NotePublicListPage />}
