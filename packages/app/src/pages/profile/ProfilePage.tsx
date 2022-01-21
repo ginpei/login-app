@@ -4,7 +4,7 @@ import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";
 import { ProfileForm } from "./ProfileForm";
 
-export const ProfilePage: React.FC = (props) => {
+export const ProfilePage: React.FC = () => {
   const loginUser = useLoginUser();
 
   if (!loginUser) {
