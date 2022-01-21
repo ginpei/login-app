@@ -3,23 +3,27 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /users/{userId} {
-      allow read, write: if userId == request.auth.uid;
+      allow read, write: if isLoginUserId(userId);
     }
 
     match /profiles/{userId} {
       allow read: if true;
-      allow write: if userId == request.auth.uid;
+      allow write: if isLoginUserId(userId);
     }
 
     match /notes/{noteId} {
-      // TODO fix
-      allow read, write;
-      // allow create: if request.resource.data.userId == request.auth.uid;
-      // allow read: if resource.data.userId == request.auth.uid;
-      // allow update: if
-      //   resource.data.userId == request.auth.uid &&
-      //   resource.data.userId == request.resource.data.userId;
-      // allow delete: if resource.data.userId == request.auth.uid;
+      allow create: if isLoginUserId(request.resource.data.userId);
+      allow read: if
+        isLoginUserId(resource.data.userId) ||
+        resource.data.shareLevel == "public";
+      allow update: if
+        isLoginUserId(resource.data.userId) &&
+        isLoginUserId(request.resource.data.userId);
+      allow delete: if isLoginUserId(resource.data.userId);
+    }
+
+    function isLoginUserId(userId) {
+      return request.auth != null && userId == request.auth.uid;
     }
   }
 }
