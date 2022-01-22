@@ -29,35 +29,7 @@ export function LoginUserScreen({
   children,
   loadingScreen,
 }: LoginUserContextProps): ReactElement {
-  // this component handles only login user on Firebase auth
-
   const currentUser = useFirebaseAuthCurrentUser(auth);
-
-  if (currentUser === undefined) {
-    return loadingScreen;
-  }
-
-  return (
-    <InnerLoginUserScreen
-      currentUser={currentUser}
-      loadingScreen={loadingScreen}
-    >
-      {children}
-    </InnerLoginUserScreen>
-  );
-}
-
-export function useLoginUser(): LoginUser | null {
-  return useContext(loginUserContext);
-}
-
-function InnerLoginUserScreen({
-  children,
-  currentUser,
-  loadingScreen,
-}: InnerLoginUserContextProps): ReactElement {
-  // this component handles login user on app following the given Firebase login
-
   const [profile, profileError] = useProfile(currentUser?.uid);
   const [loginUser, setLoginUser] = useState<LoginUser | null | undefined>(
     undefined
@@ -78,7 +50,7 @@ function InnerLoginUserScreen({
 
     setLoginUser(undefined);
 
-    if (profile === undefined) {
+    if (currentUser === undefined || profile === undefined) {
       return;
     }
 
@@ -93,7 +65,7 @@ function InnerLoginUserScreen({
     });
   }, [currentUser, profile]);
 
-  if (loginUser === undefined) {
+  if (currentUser === undefined || loginUser === undefined) {
     return loadingScreen;
   }
 
@@ -102,4 +74,8 @@ function InnerLoginUserScreen({
       {children}
     </loginUserContext.Provider>
   );
+}
+
+export function useLoginUser(): LoginUser | null {
+  return useContext(loginUserContext);
 }
