@@ -32,6 +32,7 @@ export const DashboardPage: React.VFC = () => {
   return (
     <AppBasicLayout loginUser={loginUser} title={title}>
       <VStack>
+        <NiceHeading>{title}</NiceHeading>
         <p>
           <Link to={noteNewPagePath()}>New note...</Link>
           {" | "}
