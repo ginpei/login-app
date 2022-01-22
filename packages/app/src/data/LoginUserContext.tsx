@@ -21,10 +21,6 @@ export interface LoginUserContextProps {
   loadingScreen: JSX.Element;
 }
 
-interface InnerLoginUserContextProps extends LoginUserContextProps {
-  currentUser: User | null;
-}
-
 export function LoginUserScreen({
   children,
   loadingScreen,
