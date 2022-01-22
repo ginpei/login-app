@@ -10,7 +10,7 @@ import React, {
 } from "react";
 import { auth } from "../misc/firebase";
 import { logError } from "../misc/log";
-import { useProfile } from "../models/profile/profileHooks";
+import { useLiveProfile } from "../models/profile/profileHooks";
 import { LoginUser } from "./LoginUser";
 import { createProfile } from "./Profile";
 
@@ -30,7 +30,7 @@ export function LoginUserScreen({
   loadingScreen,
 }: LoginUserContextProps): ReactElement {
   const currentUser = useFirebaseAuthCurrentUser(auth);
-  const [profile, profileError] = useProfile(currentUser?.uid);
+  const [profile, profileError] = useLiveProfile(currentUser?.uid);
   const [loginUser, setLoginUser] = useState<LoginUser | null | undefined>(
     undefined
   );
