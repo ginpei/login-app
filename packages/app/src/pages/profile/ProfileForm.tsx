@@ -13,29 +13,25 @@ import {
   useEffect,
   useState,
 } from "react";
+import { LoginUser } from "../../data/LoginUser";
 import { createProfile, Profile } from "../../data/Profile";
 import { db } from "../../misc/firebase";
 
 export interface ProfileFormProps {
-  userId: string;
+  loginUser: LoginUser;
 }
 
-export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
-  const [currentProfile, profileError] = useProfile(userId);
-  const [profile, setProfile] = useState<Profile | undefined>(currentProfile);
+export const ProfileForm: React.FC<ProfileFormProps> = ({ loginUser }) => {
+  const [profile, setProfile] = useState(loginUser.profile);
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<Error | null>(null);
 
   const onSubmit: FormEventHandler = async (event) => {
     event.preventDefault();
 
-    if (!profile) {
-      return;
-    }
-
     setSaving(true);
     try {
-      await Promise.all([sleep(1000), saveProfile(userId, profile)]);
+      await Promise.all([sleep(1000), saveProfile(loginUser.id, profile)]);
     } catch (error) {
       setSaveError(toError(error));
     } finally {
@@ -44,10 +40,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
   };
 
   const onValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    if (!profile) {
-      return;
-    }
-
     const { name, value } = event.currentTarget;
     if (name === "name") {
       setProfile({ ...profile, name: value });
@@ -57,23 +49,15 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
   };
 
   useEffect(() => {
-    setProfile(currentProfile);
-  }, [currentProfile]);
-
-  if (profileError) {
-    return <ErrorBox errors={[profileError]} />;
-  }
-
-  if (!profile) {
-    return <>…</>;
-  }
+    setProfile(loginUser.profile);
+  }, [loginUser]);
 
   return (
     <form className="ProfileForm" onSubmit={onSubmit}>
       <fieldset disabled={saving}>
         <VStack>
           {saveError && <ErrorBox errors={[saveError]} />}
-          <p>User ID: {userId}</p>
+          <p>User ID: {loginUser.id}</p>
           <TextField
             label="Display name"
             name="name"

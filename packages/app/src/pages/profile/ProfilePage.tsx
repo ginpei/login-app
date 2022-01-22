@@ -15,7 +15,7 @@ export const ProfilePage: React.FC = () => {
     <AppBasicLayout loginUser={loginUser} title="Profile">
       <VStack>
         <NiceHeading>Profile</NiceHeading>
-        <ProfileForm userId={loginUser.id} />
+        <ProfileForm loginUser={loginUser} />
       </VStack>
     </AppBasicLayout>
   );
