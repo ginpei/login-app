@@ -71,8 +71,14 @@ function InnerLoginUserScreen({
   }, [profileError]);
 
   useEffect(() => {
+    if (currentUser === null) {
+      setLoginUser(null);
+      return;
+    }
+
     setLoginUser(undefined);
-    if (!currentUser || profile === undefined) {
+
+    if (profile === undefined) {
       return;
     }
 
