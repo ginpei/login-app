@@ -1,6 +1,6 @@
 import { NiceHeading, VStack } from "@login-app/ui";
 import { Link } from "react-router-dom";
-import { useLoginUser } from "../../data/LoginUserHooks";
+import { useLoginUser } from "../../data/LoginUserContext";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { dashboardPagePath } from "../dashboard/dashboardPageMeta";
 import { loginPagePath } from "../login/loginPageMeta";

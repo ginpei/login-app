@@ -6,7 +6,7 @@ import {
   VStack,
 } from "@login-app/ui";
 import { Link, useParams } from "react-router-dom";
-import { useLoginUser } from "../../data/LoginUserHooks";
+import { useLoginUser } from "../../data/LoginUserContext";
 import { Note } from "../../data/Note";
 import { useNote } from "../../data/noteHooks";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";

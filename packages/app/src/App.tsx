@@ -1,24 +1,16 @@
-import {
-  CurrentUserScreen,
-  useFirebaseAuthCurrentUser,
-} from "@login-app/firebase-utils";
 import { LoadingScreen } from "@login-app/ui";
 import "@login-app/ui/out/styles.css";
 import React from "react";
-import { auth } from "./misc/firebase";
+import { LoginUserScreen } from "./data/LoginUserContext";
 import { AppRouter } from "./misc/router";
 
 function App(): JSX.Element {
-  const currentUser = useFirebaseAuthCurrentUser(auth);
-
-  if (currentUser === undefined) {
-    return <LoadingScreen title="" />;
-  }
+  const loadingScreen = <LoadingScreen title="" />;
 
   return (
-    <CurrentUserScreen currentUser={currentUser}>
+    <LoginUserScreen loadingScreen={loadingScreen}>
       <AppRouter />
-    </CurrentUserScreen>
+    </LoginUserScreen>
   );
 }
 

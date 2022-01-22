@@ -2,7 +2,7 @@ import { sleep, toError } from "@login-app/misc/out";
 import { ErrorBox, NiceHeading, VStack } from "@login-app/ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLoginUser } from "../../data/LoginUserHooks";
+import { useLoginUser } from "../../data/LoginUserContext";
 import { createNote, Note, NoteHandler } from "../../data/Note";
 import { saveNote } from "../../data/noteDb";
 import { logError } from "../../misc/log";

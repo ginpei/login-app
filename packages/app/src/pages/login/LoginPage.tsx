@@ -3,7 +3,7 @@ import { ErrorBox, NiceButton, NiceHeading, VStack } from "@login-app/ui";
 import { EmailAuthProvider, GoogleAuthProvider, signOut } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLoginUser } from "../../data/LoginUserHooks";
+import { useLoginUser } from "../../data/LoginUserContext";
 import { auth } from "../../misc/firebase";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";

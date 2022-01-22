@@ -8,7 +8,7 @@ import {
 } from "@login-app/ui";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useLoginUser } from "../../data/LoginUserHooks";
+import { useLoginUser } from "../../data/LoginUserContext";
 import { Note, NoteHandler } from "../../data/Note";
 import { deleteNote, saveNote } from "../../data/noteDb";
 import { useNote } from "../../data/noteHooks";
