@@ -13,7 +13,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Profile } from "../../data/Profile";
+import { createProfile, Profile } from "../../data/Profile";
 import { db } from "../../misc/firebase";
 
 export interface ProfileFormProps {
@@ -44,6 +44,10 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
   };
 
   const onValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    if (!profile) {
+      return;
+    }
+
     const { name, value } = event.currentTarget;
     if (name === "name") {
       setProfile({ ...profile, name: value });
@@ -96,10 +100,11 @@ function useProfile(userId: string): [Profile | undefined, Error | null] {
       .then((ssDoc) => {
         const data = ssDoc.data();
         if (!data) {
-          setProfile({ name: "" });
+          setProfile(createProfile());
           return;
         }
         const newProfile: Profile = {
+          id: String(data.id),
           name: String(data.name),
         };
         setProfile(newProfile);
