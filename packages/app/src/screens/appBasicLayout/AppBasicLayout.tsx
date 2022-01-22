@@ -26,7 +26,7 @@ export const AppBasicLayout: React.FC<AppBasicLayoutProps> = ({
       navSecondary={
         loginUser ? (
           <Link className="AppBasicLayout-NavBar-link" to={dashboardPagePath()}>
-            Dashboard
+            {loginUser.profile.name || "(No name)"}
           </Link>
         ) : (
           <Link className="AppBasicLayout-NavBar-link" to={loginPagePath()}>
