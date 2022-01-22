@@ -20,6 +20,11 @@ export function useProfile(
     const doc = getProfileDoc(userId);
     getDoc(doc)
       .then((ss) => {
+        if (!ss.exists()) {
+          setProfile(null);
+          return;
+        }
+
         const newProfile = ss.data();
         setProfile(newProfile);
       })
