@@ -87,10 +87,10 @@ function useProfile(userId: string): [Profile | undefined, Error | null] {
           setProfile(createProfile());
           return;
         }
-        const newProfile: Profile = {
+        const newProfile = createProfile({
           id: String(data.id),
           name: String(data.name),
-        };
+        });
         setProfile(newProfile);
       })
       .catch((newError) => setError(newError));
