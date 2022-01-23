@@ -1,6 +1,7 @@
-export interface Note {
+import { createDataRecord, DataRecord } from "@login-app/firebase-utils";
+
+export interface Note extends DataRecord {
   body: string;
-  id: string;
   shareLevel: NoteShareLevel;
   title: string;
   userId: string;
@@ -14,8 +15,8 @@ const noteShareLevels = ["public", "private"] as const;
 
 export function createNote(initial: Partial<Note> = {}): Note {
   return {
+    ...createDataRecord(initial),
     body: initial.body ?? "",
-    id: initial.id ?? "",
     shareLevel: initial.shareLevel ?? "private",
     title: initial.title ?? "",
     userId: initial.userId ?? "",

@@ -25,8 +25,8 @@ const profileDataConverter: FirestoreDataConverter<Profile> = {
     return { ...createProfile(data), ...dataRecordFromFirestore(ss) };
   },
 
-  toFirestore(profile) {
-    return dataRecordToFirestore(profile);
+  toFirestore(data) {
+    return dataRecordToFirestore(data);
   },
 };
 

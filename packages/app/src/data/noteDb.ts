@@ -1,11 +1,18 @@
 import {
+  dataRecordFromFirestore,
+  dataRecordToFirestore,
+} from "@login-app/firebase-utils";
+import {
   addDoc,
   collection,
   CollectionReference,
   deleteDoc,
   doc as fbDoc,
   DocumentReference,
+  DocumentSnapshot,
   FirestoreDataConverter,
+  QueryDocumentSnapshot,
+  serverTimestamp,
   setDoc,
 } from "firebase/firestore";
 import { db } from "../misc/firebase";
@@ -15,13 +22,11 @@ export type NoteDocument = DocumentReference<Note>;
 
 const noteDataConverter: FirestoreDataConverter<Note> = {
   fromFirestore(ss) {
-    const data = ss.data();
-    return createNote({ ...data, id: ss.id });
+    return { ...createNote(ss.data()), ...dataRecordFromFirestore(ss) };
   },
 
-  toFirestore(note) {
-    const { id, ...data } = note;
-    return data;
+  toFirestore(data) {
+    return dataRecordToFirestore(data);
   },
 };
 
@@ -34,16 +39,26 @@ export function getNoteDoc(noteId: string): NoteDocument {
   return fbDoc(coll, noteId);
 }
 
+export function ssToNote(ss: QueryDocumentSnapshot<Note>): Note;
+export function ssToNote(ss: DocumentSnapshot<Note>): Note | null;
+export function ssToNote(
+  ss: QueryDocumentSnapshot<Note> | DocumentSnapshot<Note>
+): Note | null {
+  return ss.exists() ? ss.data() : null;
+}
+
 export async function saveNote(note: Note): Promise<NoteDocument> {
   const { id } = note;
+  const now = serverTimestamp();
+
   if (id) {
     const doc = getNoteDoc(id);
-    await setDoc(doc, note);
+    await setDoc(doc, { ...note, updatedAt: now });
     return doc;
   }
 
   const coll = getNoteCollection();
-  return addDoc(coll, note);
+  return addDoc(coll, { ...note, createdAt: now, updatedAt: now });
 }
 
 export async function deleteNote(noteId: string): Promise<void> {

@@ -2,7 +2,7 @@ import { sleep } from "@login-app/misc/out";
 import { getDoc, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Note } from "./Note";
-import { getNoteCollection, getNoteDoc } from "./noteDb";
+import { getNoteCollection, getNoteDoc, ssToNote } from "./noteDb";
 
 export function useUserNotes(
   userId: string | undefined
@@ -22,7 +22,7 @@ export function useUserNotes(
     const q = query(coll, where("userId", "==", userId));
     getDocs(q)
       .then((ss) => {
-        const newNotes = ss.docs.map((v) => v.data());
+        const newNotes = ss.docs.map((v) => ssToNote(v));
         setNotes(newNotes);
       })
       .catch((newError) => {
@@ -46,7 +46,7 @@ export function usePublicNotes(): [Note[] | undefined, Error | null] {
     const q = query(coll, where("shareLevel", "==", "public"));
     getDocs(q)
       .then((ss) => {
-        const newNotes = ss.docs.map((v) => v.data());
+        const newNotes = ss.docs.map((v) => ssToNote(v));
         setNotes(newNotes);
       })
       .catch((newError) => {
@@ -75,8 +75,7 @@ export function useNote(
     const doc = getNoteDoc(noteId);
     getDoc(doc)
       .then((ss) => {
-        const newNotes = ss.data();
-        setNote(newNotes || null);
+        setNote(ssToNote(ss));
       })
       .catch((newError) => {
         setNote(null);
