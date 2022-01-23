@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserContext";
 import { Note } from "../../data/Note";
 import { useUserNotes } from "../../data/noteHooks";
+import { NoteListItem } from "../../models/note/NoteListItem";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";
 import { loginPagePath } from "../login/loginPageMeta";
@@ -66,16 +67,5 @@ const NoteList: React.VFC<{ notes: Note[] }> = ({ notes }) => {
         <NoteListItem key={note.id} note={note} />
       ))}
     </VStack>
-  );
-};
-
-const NoteListItem: React.VFC<{ note: Note }> = ({ note }) => {
-  return (
-    <Link to={noteViewPagePath(note.id)}>
-      <p>{note.title}</p>
-      <LineClamp lines={3}>
-        <small>{note.body}</small>
-      </LineClamp>
-    </Link>
   );
 };
