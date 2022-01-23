@@ -21,10 +21,7 @@ export type ProfileDocument = DocumentReference<Profile>;
 const profileDataConverter: FirestoreDataConverter<Profile> = {
   fromFirestore(ss) {
     const data = ss.data();
-    return createProfile({
-      ...data,
-      ...dataRecordFromFirestore(ss),
-    });
+    return { ...createProfile(data), ...dataRecordFromFirestore(ss) };
   },
 
   toFirestore(profile) {
