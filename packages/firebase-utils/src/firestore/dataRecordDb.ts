@@ -1,4 +1,9 @@
-import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
+import {
+  DocumentData,
+  PartialWithFieldValue,
+  QueryDocumentSnapshot,
+  Timestamp,
+} from "firebase/firestore";
 import { createDataRecord, DataRecord } from "./DataRecord";
 
 export function dataRecordFromFirestore(ss: QueryDocumentSnapshot): DataRecord {
@@ -9,4 +14,11 @@ export function dataRecordFromFirestore(ss: QueryDocumentSnapshot): DataRecord {
     id: ss.id,
     updatedAt: updatedAt instanceof Timestamp ? updatedAt.toMillis() : 0,
   });
+}
+
+export function dataRecordToFirestore(
+  record: PartialWithFieldValue<DataRecord>
+): DocumentData {
+  const { id, ...data } = record;
+  return data;
 }

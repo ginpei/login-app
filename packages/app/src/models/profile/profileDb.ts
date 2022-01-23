@@ -1,4 +1,7 @@
-import { dataRecordFromFirestore } from "@login-app/firebase-utils";
+import {
+  dataRecordFromFirestore,
+  dataRecordToFirestore,
+} from "@login-app/firebase-utils";
 import {
   addDoc,
   collection,
@@ -25,8 +28,7 @@ const profileDataConverter: FirestoreDataConverter<Profile> = {
   },
 
   toFirestore(profile) {
-    const { id, ...data } = profile;
-    return data;
+    return dataRecordToFirestore(profile);
   },
 };
 
