@@ -5,11 +5,13 @@ import { noteViewPagePath } from "../../pages/noteView/noteViewPageMeta";
 
 export const NoteListItem: React.VFC<{ note: Note }> = ({ note }) => {
   return (
-    <Link to={noteViewPagePath(note.id)}>
-      <p>{note.title}</p>
-      <LineClamp lines={3}>
-        <small>{note.body}</small>
-      </LineClamp>
-    </Link>
+    <LineClamp lines={3}>
+      <Link to={noteViewPagePath(note.id)}>{note.title}</Link>{" "}
+      <small>
+        ({new Intl.DateTimeFormat().format(new Date(note.createdAt))})
+      </small>
+      {note.body && " - "}
+      <small>{note.body}</small>
+    </LineClamp>
   );
 };
