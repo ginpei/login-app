@@ -1,21 +1,13 @@
 import { sleep, toError } from "@login-app/misc";
 import { ErrorBox, NiceButton, TextField, VStack } from "@login-app/ui";
 import {
-  collection,
-  doc,
-  getDoc,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
-import {
   ChangeEventHandler,
   FormEventHandler,
   useEffect,
   useState,
 } from "react";
 import { LoginUser } from "../../data/LoginUser";
-import { createProfile, Profile } from "../../data/Profile";
-import { db } from "../../misc/firebase";
+import { saveProfile } from "../../models/profile/profileDb";
 
 export interface ProfileFormProps {
   loginUser: LoginUser;
@@ -31,7 +23,10 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ loginUser }) => {
 
     setSaving(true);
     try {
-      await Promise.all([sleep(1000), saveProfile(loginUser.id, profile)]);
+      await Promise.all([
+        sleep(1000),
+        saveProfile({ ...profile, id: loginUser.id }),
+      ]);
     } catch (error) {
       setSaveError(toError(error));
     } finally {
@@ -70,43 +65,3 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ loginUser }) => {
     </form>
   );
 };
-
-function useProfile(userId: string): [Profile | undefined, Error | null] {
-  const [profile, setProfile] = useState<Profile | undefined>(undefined);
-  const [error, setError] = useState<Error | null>(null);
-
-  useEffect(() => {
-    setProfile(undefined);
-
-    const refColl = collection(db, "profiles");
-    const refDoc = doc(refColl, userId);
-    getDoc(refDoc)
-      .then((ssDoc) => {
-        const data = ssDoc.data();
-        if (!data) {
-          setProfile(createProfile());
-          return;
-        }
-        const newProfile = createProfile({
-          id: String(data.id),
-          name: String(data.name),
-        });
-        setProfile(newProfile);
-      })
-      .catch((newError) => setError(newError));
-  }, [userId]);
-
-  return [profile, error];
-}
-
-async function saveProfile(userId: string, profile: Profile): Promise<void> {
-  const refColl = collection(db, "profiles");
-  const refDoc = doc(refColl, userId);
-
-  const data = {
-    ...profile,
-    updatedAt: serverTimestamp(),
-  };
-
-  await setDoc(refDoc, data);
-}
