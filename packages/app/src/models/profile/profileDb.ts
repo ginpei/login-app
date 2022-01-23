@@ -9,6 +9,7 @@ import {
   deleteDoc,
   doc as fbDoc,
   DocumentReference,
+  DocumentSnapshot,
   FirestoreDataConverter,
   serverTimestamp,
   setDoc,
@@ -36,6 +37,10 @@ export function getProfileCollection(): CollectionReference<Profile> {
 export function getProfileDoc(profileId: string): ProfileDocument {
   const coll = getProfileCollection();
   return fbDoc(coll, profileId);
+}
+
+export function ssToProfile(ss: DocumentSnapshot<Profile>): Profile | null {
+  return ss.exists() ? ss.data() : null;
 }
 
 export async function saveProfile(profile: Profile): Promise<ProfileDocument> {

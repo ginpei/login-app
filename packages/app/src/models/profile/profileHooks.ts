@@ -1,7 +1,7 @@
 import { getDoc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Profile } from "../../data/Profile";
-import { getProfileDoc } from "./profileDb";
+import { getProfileDoc, ssToProfile } from "./profileDb";
 
 export function useProfile(
   userId: string | undefined
@@ -54,13 +54,7 @@ export function useLiveProfile(
     const doc = getProfileDoc(userId);
     onSnapshot(doc, {
       next(ss) {
-        if (!ss.exists()) {
-          setProfile(null);
-          return;
-        }
-
-        const newProfile = ss.data();
-        setProfile(newProfile);
+        setProfile(ssToProfile(ss));
       },
       error(newError) {
         setProfile(null);
