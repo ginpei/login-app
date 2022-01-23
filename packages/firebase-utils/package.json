@@ -12,10 +12,6 @@
     "dev": "concurrently --names 'JS  ,Type' 'npm run build:js -- --watch' 'npm run build:types -- --watch'",
     "lint": "eslint . && tsc"
   },
-  "dependencies": {
-    "@types/react": "^17.0.34",
-    "firebase": "^9.6.1"
-  },
   "devDependencies": {
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
@@ -27,6 +23,8 @@
     "typescript": "^4.4.4"
   },
   "peerDependencies": {
+    "@types/react": "^17.0.34",
+    "firebase": "^9.6.1",
     "react": "^17.0.2"
   }
 }
