@@ -1,12 +1,11 @@
 import { useFirebaseAuthCurrentUser } from "@login-app/firebase-utils";
-import { User } from "firebase/auth";
 import React, {
   createContext,
   ReactElement,
   ReactNode,
   useContext,
   useEffect,
-  useState,
+  useMemo,
 } from "react";
 import { auth } from "../misc/firebase";
 import { logError } from "../misc/log";
@@ -27,9 +26,6 @@ export function LoginUserScreen({
 }: LoginUserContextProps): ReactElement {
   const currentUser = useFirebaseAuthCurrentUser(auth);
   const [profile, profileError] = useLiveProfile(currentUser?.uid);
-  const [loginUser, setLoginUser] = useState<LoginUser | null | undefined>(
-    undefined
-  );
 
   // TODO display error
   useEffect(() => {
@@ -38,19 +34,18 @@ export function LoginUserScreen({
     }
   }, [profileError]);
 
-  useEffect(() => {
+  const loginUser = useMemo(() => {
+    // no login
     if (currentUser === null) {
-      setLoginUser(null);
-      return;
+      return null;
     }
 
-    setLoginUser(undefined);
-
+    // loading
     if (currentUser === undefined || profile === undefined) {
-      return;
+      return undefined;
     }
 
-    setLoginUser({
+    const newLoginUser: LoginUser = {
       id: currentUser.uid,
       profile:
         profile ??
@@ -58,7 +53,8 @@ export function LoginUserScreen({
           id: currentUser.uid,
           name: currentUser.displayName ?? "",
         }),
-    });
+    };
+    return newLoginUser;
   }, [currentUser, profile]);
 
   if (currentUser === undefined || loginUser === undefined) {
