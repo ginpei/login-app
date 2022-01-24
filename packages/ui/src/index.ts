@@ -10,3 +10,4 @@ export * from "./primitive/NiceTextInput";
 export * from "./pure/ErrorBox";
 export * from "./pure/LineClamp";
 export * from "./pure/VStack";
+export * from "./pure/WrappedText";
