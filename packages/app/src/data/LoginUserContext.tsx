@@ -27,13 +27,6 @@ export function LoginUserScreen({
   const currentUser = useFirebaseAuthCurrentUser(auth);
   const [profile, profileError] = useLiveProfile(currentUser?.uid);
 
-  // TODO display error
-  useEffect(() => {
-    if (profileError) {
-      logError(profileError);
-    }
-  }, [profileError]);
-
   const loginUser = useMemo(() => {
     // no login
     if (currentUser === null) {
@@ -56,6 +49,13 @@ export function LoginUserScreen({
     };
     return newLoginUser;
   }, [currentUser, profile]);
+
+  // TODO display error
+  useEffect(() => {
+    if (profileError) {
+      logError(profileError);
+    }
+  }, [profileError]);
 
   if (currentUser === undefined || loginUser === undefined) {
     return loadingScreen;
