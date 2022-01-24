@@ -19,6 +19,16 @@ export function dataRecordFromFirestore(ss: QueryDocumentSnapshot): DataRecord {
 export function dataRecordToFirestore(
   record: PartialWithFieldValue<DataRecord>
 ): DocumentData {
-  const { id, ...data } = record;
+  // ID should dropped from document data
+  const { id, createdAt, updatedAt, ...rest } = record;
+  const data = {
+    ...rest,
+    createdAt: toTimestamp(createdAt),
+    updatedAt: toTimestamp(updatedAt),
+  };
   return data;
+}
+
+function toTimestamp<T>(value: number | T): Timestamp | T {
+  return typeof value === "number" ? Timestamp.fromMillis(value) : value;
 }
