@@ -1,4 +1,10 @@
-import { NiceButton, SelectField, TextField, VStack } from "@login-app/ui";
+import {
+  LongTextField,
+  NiceButton,
+  SelectField,
+  TextField,
+  VStack,
+} from "@login-app/ui";
 import { ChangeEventHandler, FormEventHandler } from "react";
 import { isNoteShareLevel, Note, NoteHandler } from "../../data/Note";
 
@@ -21,7 +27,7 @@ export const NoteForm: React.FC<NoteFormProps> = ({
   };
 
   const onValueChange: ChangeEventHandler<
-    HTMLInputElement | HTMLSelectElement
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
   > = (event) => {
     const { name, value } = event.currentTarget;
     if (name === "title") {
@@ -48,7 +54,7 @@ export const NoteForm: React.FC<NoteFormProps> = ({
             onChange={onValueChange}
             value={note.title}
           />
-          <TextField
+          <LongTextField
             label="Body"
             name="body"
             onChange={onValueChange}

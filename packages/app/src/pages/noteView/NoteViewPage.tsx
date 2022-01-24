@@ -1,4 +1,10 @@
-import { ErrorBox, LoadingScreen, NiceHeading, VStack } from "@login-app/ui";
+import {
+  ErrorBox,
+  LoadingScreen,
+  NiceHeading,
+  VStack,
+  WrappedText,
+} from "@login-app/ui";
 import { Link, useParams } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserContext";
 import { useNote } from "../../data/noteHooks";
@@ -60,7 +66,7 @@ export const NoteViewPage: React.VFC = () => {
             </small>
           )}
         </p>
-        <p>{note.body || <small>(Empty)</small>}</p>
+        <WrappedText>{note.body || <small>(Empty)</small>}</WrappedText>
       </VStack>
     </AppBasicLayout>
   );
