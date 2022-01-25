@@ -10,6 +10,7 @@ import { useLoginUser } from "../../data/LoginUserContext";
 import { useNote } from "../../data/noteHooks";
 import { numberToDateTimeString } from "../../misc/formats";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
+import { ErrorScreen } from "../../screens/errorScreen/AppErrorScreen";
 import { noteEditPagePath } from "../noteEdit/noteEditPageMeta";
 import { notePublicListPagePath } from "../notePublicList/notePublicListPageMeta";
 import { NotFoundPage } from "../notFound/NotFoundPage";
@@ -29,14 +30,11 @@ export const NoteViewPage: React.VFC = () => {
   if (noteError) {
     // TODO ErrorScreen
     return (
-      <AppBasicLayout loginUser={loginUser} title={noteTitle}>
-        <VStack>
-          <p>
-            <Link to={notePublicListPagePath()}>Public note list</Link>
-          </p>
-          {noteError && <ErrorBox errors={[noteError]} />}
-        </VStack>
-      </AppBasicLayout>
+      <ErrorScreen
+        errors={[noteError]}
+        loginUser={loginUser}
+        title={noteTitle}
+      ></ErrorScreen>
     );
   }
 
