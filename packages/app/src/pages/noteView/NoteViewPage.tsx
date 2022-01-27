@@ -1,3 +1,4 @@
+import { numberToDateTimeString } from "@login-app/misc";
 import {
   ErrorBox,
   LoadingScreen,
@@ -8,7 +9,6 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserContext";
 import { useNote } from "../../data/noteHooks";
-import { numberToDateTimeString } from "../../misc/formats";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { ErrorScreen } from "../../screens/errorScreen/AppErrorScreen";
 import { noteEditPagePath } from "../noteEdit/noteEditPageMeta";
