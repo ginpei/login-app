@@ -1,4 +1,4 @@
-import { sleep, toError } from "@login-app/misc/out";
+import { sleep, toError } from "@login-app/misc";
 import { ErrorBox, NiceHeading, VStack } from "@login-app/ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

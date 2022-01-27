@@ -1,4 +1,4 @@
-import { LineClamp } from "@login-app/ui/out";
+import { LineClamp } from "@login-app/ui";
 import { Link } from "react-router-dom";
 import { Note } from "../../data/Note";
 import { noteViewPagePath } from "../../pages/noteView/noteViewPageMeta";
