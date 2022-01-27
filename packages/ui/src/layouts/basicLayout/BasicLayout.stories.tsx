@@ -1,6 +1,8 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { BasicLayout } from "./BasicLayout";
+import { NiceHeading } from "../../primitive/NiceHeading";
+import { VStack } from "../../pure/VStack";
 
 export default {
   title: "Layouts/BasicLayout",
@@ -20,13 +22,15 @@ export const Basic: ComponentStory<typeof BasicLayout> = (props) => (
     navSecondary={<>Secondary navigation</>}
     title={props.title}
   >
-    <h1>Content</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
-      molestias commodi, id tempore neque harum, nostrum alias debitis repellat
-      esse quaerat eveniet sunt. Eos repudiandae possimus cum delectus, magni
-      itaque.
-    </p>
+    <VStack>
+      <NiceHeading>Content</NiceHeading>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+        molestias commodi, id tempore neque harum, nostrum alias debitis
+        repellat esse quaerat eveniet sunt. Eos repudiandae possimus cum
+        delectus, magni itaque.
+      </p>
+    </VStack>
   </BasicLayout>
 );
 
