@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { ChangeEventHandler, useState } from "react";
+import { HStack } from "../pure/HStack";
 import { NiceRadio } from "./NiceRadio";
 
 export default {
@@ -19,7 +20,7 @@ export const Basic: ComponentStory<typeof NiceRadio> = (props) => {
 
   return (
     <>
-      <div style={{ display: "flex", gap: "1rem" }}>
+      <HStack>
         {values.map((v) => (
           <NiceRadio
             checked={v === selected}
@@ -31,7 +32,7 @@ export const Basic: ComponentStory<typeof NiceRadio> = (props) => {
             value={v}
           />
         ))}
-      </div>
+      </HStack>
       <p>
         <small>Selected: {selected}</small>
       </p>

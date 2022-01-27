@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { ChangeEventHandler, useState } from "react";
+import { HStack } from "../pure/HStack";
 import { NiceCheckbox } from "./NiceCheckbox";
 
 export default {
@@ -21,7 +22,7 @@ export const Basic: ComponentStory<typeof NiceCheckbox> = (props) => {
 
   return (
     <>
-      <div style={{ display: "flex", gap: "1rem" }}>
+      <HStack>
         {values.map((v) => (
           <NiceCheckbox
             checked={selected[v]}
@@ -33,7 +34,7 @@ export const Basic: ComponentStory<typeof NiceCheckbox> = (props) => {
             value={v}
           />
         ))}
-      </div>
+      </HStack>
       <p>
         <small>
           {" "}
