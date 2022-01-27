@@ -1,11 +1,5 @@
 import { numberToDateTimeString } from "@login-app/misc";
-import {
-  ErrorBox,
-  LoadingScreen,
-  NiceHeading,
-  VStack,
-  WrappedText,
-} from "@login-app/ui";
+import { LoadingScreen, NiceHeading, VStack, WrappedText } from "@login-app/ui";
 import { Link, useParams } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserContext";
 import { useNote } from "../../data/noteHooks";
