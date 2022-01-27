@@ -1,4 +1,3 @@
-import { sleep } from "@login-app/misc/out";
 import { getDoc, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Note } from "./Note";
