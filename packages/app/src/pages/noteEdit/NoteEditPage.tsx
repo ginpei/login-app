@@ -1,4 +1,4 @@
-import { sleep, toError } from "@login-app/misc/out";
+import { logError, sleep, toError } from "@login-app/misc";
 import {
   ErrorBox,
   LoadingScreen,
@@ -12,7 +12,6 @@ import { useLoginUser } from "../../data/LoginUserContext";
 import { Note, NoteHandler } from "../../data/Note";
 import { deleteNote, saveNote } from "../../data/noteDb";
 import { useNote } from "../../data/noteHooks";
-import { logError } from "../../misc/log";
 import { NoteForm } from "../../models/note/NoteForm";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { notePublicListPagePath } from "../notePublicList/notePublicListPageMeta";

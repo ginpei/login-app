@@ -1,4 +1,5 @@
 import { useFirebaseAuthCurrentUser } from "@login-app/firebase-utils";
+import { logError } from "@login-app/misc";
 import React, {
   createContext,
   ReactElement,
@@ -8,7 +9,6 @@ import React, {
   useMemo,
 } from "react";
 import { auth } from "../misc/firebase";
-import { logError } from "../misc/log";
 import { useLiveProfile } from "../models/profile/profileHooks";
 import { LoginUser } from "./LoginUser";
 import { createProfile } from "./Profile";

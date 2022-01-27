@@ -1,11 +1,10 @@
-import { sleep, toError } from "@login-app/misc";
+import { logError, sleep, toError } from "@login-app/misc";
 import { ErrorBox, NiceHeading, VStack } from "@login-app/ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserContext";
 import { createNote, Note, NoteHandler } from "../../data/Note";
 import { saveNote } from "../../data/noteDb";
-import { logError } from "../../misc/log";
 import { NoteForm } from "../../models/note/NoteForm";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";
