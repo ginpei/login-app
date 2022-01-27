@@ -8,7 +8,18 @@ export default {
 } as ComponentMeta<typeof BasicLayout>;
 
 export const Basic: ComponentStory<typeof BasicLayout> = (props) => (
-  <BasicLayout title={props.title}>
+  <BasicLayout
+    navPrimary={
+      <a
+        className="text-current no-underline hover:text-current hover:underline"
+        href="/"
+      >
+        Primary navigation
+      </a>
+    }
+    navSecondary={<>Secondary navigation</>}
+    title={props.title}
+  >
     <h1>Content</h1>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
