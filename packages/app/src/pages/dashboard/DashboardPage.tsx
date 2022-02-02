@@ -4,7 +4,7 @@ import {
   LoadingScreen,
   NiceHeading,
   VStack,
-} from "@login-app/ui";
+} from "@login-app/ui-react";
 import { Link } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserContext";
 import { Note } from "../../data/Note";

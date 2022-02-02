@@ -1,5 +1,5 @@
 import { logError, sleep, toError } from "@login-app/misc";
-import { ErrorBox, NiceHeading, VStack } from "@login-app/ui";
+import { ErrorBox, NiceHeading, VStack } from "@login-app/ui-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserContext";

@@ -1,4 +1,4 @@
-import { NiceHeading, VStack } from "@login-app/ui";
+import { NiceHeading, VStack } from "@login-app/ui-react";
 import { EmailAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useMemo } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";

@@ -1,4 +1,4 @@
-import { ErrorBox } from "@login-app/ui";
+import { ErrorBox } from "@login-app/ui-react";
 import { LoginUser } from "../../data/LoginUser";
 import { AppBasicLayout } from "../appBasicLayout/AppBasicLayout";
 

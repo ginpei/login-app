@@ -5,7 +5,7 @@ import {
   NiceButton,
   NiceHeading,
   VStack,
-} from "@login-app/ui";
+} from "@login-app/ui-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserContext";

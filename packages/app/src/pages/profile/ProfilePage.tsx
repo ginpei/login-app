@@ -1,4 +1,4 @@
-import { NiceHeading, VStack } from "@login-app/ui";
+import { NiceHeading, VStack } from "@login-app/ui-react";
 import { useLoginUser } from "../../data/LoginUserContext";
 import { AppBasicLayout } from "../../screens/appBasicLayout/AppBasicLayout";
 import { LoginScreen } from "../../screens/login/LoginScreen";

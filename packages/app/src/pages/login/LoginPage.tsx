@@ -1,5 +1,5 @@
 import { sleep, toError } from "@login-app/misc";
-import { ErrorBox, NiceButton, NiceHeading, VStack } from "@login-app/ui";
+import { ErrorBox, NiceButton, NiceHeading, VStack } from "@login-app/ui-react";
 import { EmailAuthProvider, GoogleAuthProvider, signOut } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
