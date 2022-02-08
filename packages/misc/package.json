@@ -5,7 +5,7 @@
   "main": "out/",
   "types": "out/",
   "scripts": {
-    "build:js": "babel src --out-dir out/ --extensions .ts,.tsx --presets @babel/preset-typescript",
+    "build:js": "esbuild src/index.ts --outfile=out/index.js --sourcemap --bundle --format=esm --external:./node_modules/*",
     "build:types": "npx tsc",
     "build": "npm run build:js && npm run build:types",
     "clean": "rm -rf out/",
@@ -13,11 +13,8 @@
     "lint": "eslint . && tsc"
   },
   "devDependencies": {
-    "@babel/cli": "^7.16.0",
-    "@babel/core": "^7.16.0",
-    "@babel/preset-typescript": "^7.16.0",
-    "babel-loader": "^8.2.3",
     "concurrently": "^6.3.0",
+    "esbuild": "^0.14.20",
     "typescript": "^4.4.4"
   }
 }
