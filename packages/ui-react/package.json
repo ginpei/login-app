@@ -6,7 +6,7 @@
   "types": "out/",
   "scripts": {
     "build:css": "tailwind build --input src/tailwind.css --output out/styles.css",
-    "build:js": "babel src --out-dir out/ --extensions .ts,.tsx --presets @babel/preset-typescript,@babel/preset-react",
+    "build:js": "esbuild src/index.ts --outfile=out/index.js --sourcemap --bundle --format=esm --external:./node_modules/*",
     "build:types": "npx tsc",
     "build": "npm run build:css && npm run build:js && npm run build:types && npm run storybook:build",
     "clean": "rm -rf out/ storybook-static/",
@@ -20,16 +20,12 @@
     "react": "^17.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.16.0",
-    "@babel/core": "^7.16.0",
-    "@babel/preset-react": "^7.16.0",
-    "@babel/preset-typescript": "^7.16.0",
     "@storybook/addon-actions": "^6.4.9",
     "@storybook/addon-essentials": "^6.4.9",
     "@storybook/addon-links": "^6.4.9",
     "@storybook/react": "^6.4.9",
-    "babel-loader": "^8.2.3",
     "concurrently": "^6.3.0",
+    "esbuild": "^0.14.20",
     "react-dom": "^17.0.2",
     "tailwindcss": "^3.0.7",
     "typescript": "^4.4.4"
