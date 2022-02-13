@@ -1,5 +1,5 @@
-import { LoadingScreen } from "@login-app/ui-react";
-import "@login-app/ui-react/out/styles.css";
+import { LoadingScreen } from "@ginpei/ui-react";
+import "@ginpei/ui-react/out/styles.css";
 import React from "react";
 import { LoginUserScreen } from "./data/LoginUserContext";
 import { AppRouter } from "./misc/router";

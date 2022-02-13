@@ -1,5 +1,5 @@
-import { sleep, toError } from "@login-app/misc";
-import { ErrorBox, NiceButton, TextField, VStack } from "@login-app/ui-react";
+import { sleep, toError } from "@ginpei/app-utils";
+import { ErrorBox, NiceButton, TextField, VStack } from "@ginpei/ui-react";
 import {
   ChangeEventHandler,
   FormEventHandler,

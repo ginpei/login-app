@@ -1,4 +1,4 @@
-import { NiceHeading } from "@login-app/ui-react";
+import { NiceHeading } from "@ginpei/ui-react";
 import { LoginUser } from "../../data/LoginUser";
 import { AppBasicLayout } from "../appBasicLayout/AppBasicLayout";
 

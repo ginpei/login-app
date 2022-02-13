@@ -1,10 +1,10 @@
-import { numberToDateTimeString } from "@login-app/misc";
+import { numberToDateTimeString } from "@ginpei/app-utils";
 import {
   LoadingScreen,
   NiceHeading,
   VStack,
   WrappedText,
-} from "@login-app/ui-react";
+} from "@ginpei/ui-react";
 import { Link, useParams } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserContext";
 import { useNote } from "../../data/noteHooks";

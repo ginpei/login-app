@@ -1,4 +1,4 @@
-import { BasicLayout } from "@login-app/ui-react";
+import { BasicLayout } from "@ginpei/ui-react";
 import { Link } from "react-router-dom";
 import { LoginUser } from "../../data/LoginUser";
 import { dashboardPagePath } from "../../pages/dashboard/dashboardPageMeta";

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@login-app/ui-react",
+  "name": "@ginpei/ui-react",
   "version": "0.0.0",
   "main": "out/",
   "types": "out/",

@@ -1,4 +1,4 @@
-import { createDataRecord, DataRecord } from "@login-app/firebase-utils";
+import { createDataRecord, DataRecord } from "@ginpei/firebase-utils-react";
 
 export interface Profile extends DataRecord {
   name: string;

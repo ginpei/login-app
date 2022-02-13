@@ -1,11 +1,11 @@
-import { logError, sleep, toError } from "@login-app/misc";
+import { logError, sleep, toError } from "@ginpei/app-utils";
 import {
   ErrorBox,
   LoadingScreen,
   NiceButton,
   NiceHeading,
   VStack,
-} from "@login-app/ui-react";
+} from "@ginpei/ui-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useLoginUser } from "../../data/LoginUserContext";

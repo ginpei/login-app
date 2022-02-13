@@ -4,7 +4,7 @@ import {
   SelectField,
   TextField,
   VStack,
-} from "@login-app/ui-react";
+} from "@ginpei/ui-react";
 import { ChangeEventHandler, FormEventHandler } from "react";
 import { isNoteShareLevel, Note, NoteHandler } from "../../data/Note";
 

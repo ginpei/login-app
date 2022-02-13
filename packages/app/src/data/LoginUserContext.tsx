@@ -1,5 +1,5 @@
-import { useFirebaseAuthCurrentUser } from "@login-app/firebase-utils";
-import { logError } from "@login-app/misc";
+import { useFirebaseAuthCurrentUser } from "@ginpei/firebase-utils-react";
+import { logError } from "@ginpei/app-utils";
 import React, {
   createContext,
   ReactElement,

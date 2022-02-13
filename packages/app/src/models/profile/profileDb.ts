@@ -1,7 +1,7 @@
 import {
   dataRecordFromFirestore,
   dataRecordToFirestore,
-} from "@login-app/firebase-utils";
+} from "@ginpei/firebase-utils-react";
 import {
   addDoc,
   collection,
