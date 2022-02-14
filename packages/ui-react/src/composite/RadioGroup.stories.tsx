@@ -8,7 +8,7 @@ export default {
 } as ComponentMeta<typeof RadioGroup>;
 
 export const Basic: ComponentStory<typeof RadioGroup> = (props) => {
-  const [selected, setSelected] = useState(props.checked);
+  const [selected, setSelected] = useState(props.selected);
   const onSelectChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value } = event.currentTarget;
     setSelected(value);
@@ -16,7 +16,7 @@ export const Basic: ComponentStory<typeof RadioGroup> = (props) => {
 
   return (
     <>
-      <RadioGroup {...props} checked={selected} onChange={onSelectChange} />
+      <RadioGroup {...props} selected={selected} onChange={onSelectChange} />
       <p>
         <small>Selected: {selected}</small>
       </p>
@@ -25,7 +25,7 @@ export const Basic: ComponentStory<typeof RadioGroup> = (props) => {
 };
 
 Basic.args = {
-  checked: "item-1",
+  selected: "item-1",
   name: "example",
   options: [
     { label: "Item 1", value: "item-1" },

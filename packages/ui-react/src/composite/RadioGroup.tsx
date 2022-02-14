@@ -11,7 +11,7 @@ type BasicInputProps = Omit<
 
 export interface RadioGroupProps<T extends string = string>
   extends BasicInputProps {
-  checked: T;
+  selected: T;
   itemWrapper?: ItemWrapper;
   listWrapper?: ItemWrapper;
   name: NonNullable<ComponentPropsWithRef<"input">["name"]>;
@@ -22,7 +22,7 @@ export interface RadioGroupProps<T extends string = string>
 }
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
-  checked,
+  selected,
   itemWrapper,
   listWrapper,
   options,
@@ -39,7 +39,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
             <NiceRadio
               {...inputProps}
               {...optionProps}
-              checked={checked === value}
+              checked={selected === value}
               label={label}
               value={value}
             />
