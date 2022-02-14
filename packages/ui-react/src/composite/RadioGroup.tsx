@@ -1,4 +1,9 @@
-import { ComponentPropsWithRef, ReactNode } from "react";
+import {
+  ChangeEventHandler,
+  ComponentPropsWithRef,
+  ReactNode,
+  useState,
+} from "react";
 import { NiceRadio } from "../primitive/NiceRadio";
 import { HStack } from "../pure/HStack";
 
@@ -49,6 +54,18 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     </div>
   );
 };
+
+export function useRadioGroupChange<T extends string = string>(
+  initial: RadioGroupProps<T>["selected"]
+): [T, ChangeEventHandler<HTMLInputElement>] {
+  const [selected, setSelected] = useState(initial);
+  const onSelectChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const { value } = event.currentTarget;
+    setSelected(value as T);
+  };
+
+  return [selected, onSelectChange];
+}
 
 function DefaultListWrapper(props: { children: ReactNode }): JSX.Element {
   return <HStack>{props.children}</HStack>;

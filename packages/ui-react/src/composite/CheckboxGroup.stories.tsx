@@ -1,6 +1,6 @@
-import React, { ChangeEventHandler, useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { CheckboxGroup } from "./CheckboxGroup";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import React from "react";
+import { CheckboxGroup, useCheckboxGroupChange } from "./CheckboxGroup";
 
 export default {
   title: "Composite/CheckboxGroup",
@@ -8,15 +8,7 @@ export default {
 } as ComponentMeta<typeof CheckboxGroup>;
 
 export const Basic: ComponentStory<typeof CheckboxGroup> = (props) => {
-  const [selected, setSelected] = useState(props.selected);
-  const onSelectChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { checked, value } = event.currentTarget;
-    if (checked) {
-      setSelected([...selected, value]);
-    } else {
-      setSelected(selected.filter((v) => v !== value));
-    }
-  };
+  const [selected, onSelectChange] = useCheckboxGroupChange(props.selected);
 
   return (
     <>
@@ -39,15 +31,7 @@ Basic.args = {
 };
 
 export const CustomWrappers: ComponentStory<typeof CheckboxGroup> = (props) => {
-  const [selected, setSelected] = useState(props.selected);
-  const onSelectChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { checked, value } = event.currentTarget;
-    if (checked) {
-      setSelected([...selected, value]);
-    } else {
-      setSelected(selected.filter((v) => v !== value));
-    }
-  };
+  const [selected, onSelectChange] = useCheckboxGroupChange(props.selected);
 
   return (
     <CheckboxGroup {...props} selected={selected} onChange={onSelectChange} />

@@ -1,4 +1,10 @@
-import { ComponentPropsWithRef, ReactNode } from "react";
+import {
+  ChangeEventHandler,
+  ComponentPropsWithRef,
+  ReactNode,
+  useCallback,
+  useState,
+} from "react";
 import { NiceCheckbox } from "../primitive/NiceCheckbox";
 import { HStack } from "../pure/HStack";
 
@@ -49,6 +55,26 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
     </div>
   );
 };
+
+export function useCheckboxGroupChange<T extends string = string>(
+  initial: CheckboxGroupProps<T>["selected"]
+): [T[], ChangeEventHandler<HTMLInputElement>] {
+  const [selected, setSelected] = useState(initial);
+
+  const onSelectChange: ChangeEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      const { checked, value } = event.currentTarget;
+      if (checked) {
+        setSelected([...selected, value] as T[]);
+      } else {
+        setSelected(selected.filter((v) => v !== value) as T[]);
+      }
+    },
+    [selected]
+  );
+
+  return [selected, onSelectChange];
+}
 
 function DefaultListWrapper(props: { children: ReactNode }): JSX.Element {
   return <HStack>{props.children}</HStack>;

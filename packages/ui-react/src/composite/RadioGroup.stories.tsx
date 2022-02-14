@@ -1,6 +1,6 @@
-import React, { ChangeEventHandler, useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { RadioGroup } from "./RadioGroup";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import React from "react";
+import { RadioGroup, useRadioGroupChange } from "./RadioGroup";
 
 export default {
   title: "Composite/RadioGroup",
@@ -8,15 +8,11 @@ export default {
 } as ComponentMeta<typeof RadioGroup>;
 
 export const Basic: ComponentStory<typeof RadioGroup> = (props) => {
-  const [selected, setSelected] = useState(props.selected);
-  const onSelectChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { value } = event.currentTarget;
-    setSelected(value);
-  };
+  const [selected, onChange] = useRadioGroupChange(props.selected);
 
   return (
     <>
-      <RadioGroup {...props} selected={selected} onChange={onSelectChange} />
+      <RadioGroup {...props} selected={selected} onChange={onChange} />
       <p>
         <small>Selected: {selected}</small>
       </p>
@@ -35,15 +31,9 @@ Basic.args = {
 };
 
 export const CustomWrappers: ComponentStory<typeof RadioGroup> = (props) => {
-  const [selected, setSelected] = useState(props.selected);
-  const onSelectChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { value } = event.currentTarget;
-    setSelected(value);
-  };
+  const [selected, onChange] = useRadioGroupChange(props.selected);
 
-  return (
-    <RadioGroup {...props} selected={selected} onChange={onSelectChange} />
-  );
+  return <RadioGroup {...props} selected={selected} onChange={onChange} />;
 };
 
 CustomWrappers.args = {
