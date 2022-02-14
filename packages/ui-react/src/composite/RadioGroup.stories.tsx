@@ -34,9 +34,17 @@ Basic.args = {
   ],
 };
 
-export const CustomWrappers: ComponentStory<typeof RadioGroup> = (props) => (
-  <RadioGroup {...props} />
-);
+export const CustomWrappers: ComponentStory<typeof RadioGroup> = (props) => {
+  const [selected, setSelected] = useState(props.selected);
+  const onSelectChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const { value } = event.currentTarget;
+    setSelected(value);
+  };
+
+  return (
+    <RadioGroup {...props} selected={selected} onChange={onSelectChange} />
+  );
+};
 
 CustomWrappers.args = {
   name: "example",
