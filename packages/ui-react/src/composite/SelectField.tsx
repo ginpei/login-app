@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithRef } from "react";
 import { NiceSelect } from "../primitive/NiceSelect";
+import { InputField } from "../pure/InputField";
 
 export interface SelectFieldProps extends ComponentPropsWithRef<"select"> {
   label: string;
@@ -7,13 +8,12 @@ export interface SelectFieldProps extends ComponentPropsWithRef<"select"> {
 
 export const SelectField: React.FC<SelectFieldProps> = ({
   label,
-  className,
+  className = "",
   ...inputProps
 }) => {
   return (
-    <label className={`SelectField flex flex-col ${className}`}>
-      <span>{label}</span>
+    <InputField className={`${className} SelectField`} label={label}>
       <NiceSelect {...inputProps} />
-    </label>
+    </InputField>
   );
 };

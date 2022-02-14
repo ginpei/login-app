@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithRef } from "react";
 import { NiceTextarea } from "../primitive/NiceTextarea";
+import { InputField } from "../pure/InputField";
 
 export interface LongTextFieldProps extends ComponentPropsWithRef<"textarea"> {
   label: string;
@@ -7,13 +8,12 @@ export interface LongTextFieldProps extends ComponentPropsWithRef<"textarea"> {
 
 export const LongTextField: React.FC<LongTextFieldProps> = ({
   label,
-  className,
+  className = "",
   ...inputProps
 }) => {
   return (
-    <label className={`LongTextField flex flex-col ${className}`}>
-      <span>{label}</span>
+    <InputField className={`${className} LongTextField`} label={label}>
       <NiceTextarea {...inputProps} />
-    </label>
+    </InputField>
   );
 };

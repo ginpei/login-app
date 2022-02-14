@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithRef } from "react";
 import { NiceTextInput } from "../primitive/NiceTextInput";
+import { InputField } from "../pure/InputField";
 
 export interface TextFieldProps extends ComponentPropsWithRef<"input"> {
   label: string;
@@ -7,13 +8,12 @@ export interface TextFieldProps extends ComponentPropsWithRef<"input"> {
 
 export const TextField: React.FC<TextFieldProps> = ({
   label,
-  className,
+  className = "",
   ...inputProps
 }) => {
   return (
-    <label className={`TextField flex flex-col ${className}`}>
-      <span>{label}</span>
+    <InputField className={`${className} TextField`} label={label}>
       <NiceTextInput {...inputProps} />
-    </label>
+    </InputField>
   );
 };
