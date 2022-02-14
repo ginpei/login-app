@@ -6,7 +6,7 @@
   "types": "out/",
   "scripts": {
     "build:css": "tailwind build --input src/tailwind.css --output out/styles.css",
-    "build:js": "esbuild src/index.ts --outfile=out/index.js --sourcemap --bundle --format=esm --external:./node_modules/*",
+    "build:js": "esbuild src/index.ts --outdir=out/ --sourcemap --bundle --format=esm --external:./node_modules/*",
     "build:types": "npx tsc",
     "build": "npm run build:css && npm run build:js && npm run build:types && npm run storybook:build",
     "clean": "rm -rf out/ storybook-static/",
