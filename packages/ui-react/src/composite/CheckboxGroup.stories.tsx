@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import { InputField } from "../pure/InputField";
 import { CheckboxGroup, useCheckboxGroupChange } from "./CheckboxGroup";
 
 export default {
@@ -12,7 +13,13 @@ export const Basic: ComponentStory<typeof CheckboxGroup> = (props) => {
 
   return (
     <>
-      <CheckboxGroup {...props} selected={selected} onChange={onSelectChange} />
+      <InputField as="div" label="Checkbox Group">
+        <CheckboxGroup
+          {...props}
+          selected={selected}
+          onChange={onSelectChange}
+        />
+      </InputField>
       <p>
         <small>Selected: {selected.join(", ") || "(none)"}</small>
       </p>

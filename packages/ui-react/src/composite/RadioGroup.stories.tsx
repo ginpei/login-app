@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import { InputField } from "../pure/InputField";
 import { RadioGroup, useRadioGroupChange } from "./RadioGroup";
 
 export default {
@@ -12,7 +13,9 @@ export const Basic: ComponentStory<typeof RadioGroup> = (props) => {
 
   return (
     <>
-      <RadioGroup {...props} selected={selected} onChange={onChange} />
+      <InputField as="div" label="Radio Group">
+        <RadioGroup {...props} selected={selected} onChange={onChange} />
+      </InputField>
       <p>
         <small>Selected: {selected}</small>
       </p>
