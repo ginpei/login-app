@@ -17,8 +17,8 @@ export const NiceButton: React.FC<NiceButtonProps> = ({
     return (
       <InnerButton
         className={`
-          border-ginpen hover:border-neutral-500 disabled:border-gray-300
-          bg-ginpen disabled:bg-gray-200
+          border-ginpen active:border-current hover:border-neutral-500 disabled:border-gray-300
+          bg-ginpen hover:bg-cyan-900 disabled:bg-gray-200
           text-white disabled:text-gray-500
         `}
         props={props}
@@ -29,9 +29,9 @@ export const NiceButton: React.FC<NiceButtonProps> = ({
   return (
     <InnerButton
       className={`
-        border-ginpen hover:border-current active:border-current disabled:border-gray-300
-        focus:bg-blue-100
-        text-ginpen hover:text-red-700 active:text-red-400 disabled:text-gray-500
+        border-ginpen active:border-cyan-700 hover:border-cyan-600 disabled:border-gray-300
+        bg-white active:bg-cyan-50
+        text-ginpen active:text-cyan-600 disabled:text-gray-500
       `}
       props={props}
     />
