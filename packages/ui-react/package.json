@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@ginpei/ui-react",
   "version": "0.0.1-alpha.1",
   "main": "out/",
