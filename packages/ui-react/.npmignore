@@ -1,0 +1,4 @@
+.storybook/
+**/*.stories.*
+src/stories/
+storybook-static/
