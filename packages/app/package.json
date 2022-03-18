@@ -1,11 +1,11 @@
 {
   "name": "app",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "private": true,
   "dependencies": {
-    "@ginpei/firebase-utils-react": "0.0.0",
-    "@ginpei/app-utils": "^0.0.0",
-    "@ginpei/ui-react": "0.0.0",
+    "@ginpei/app-utils": "^0.0.1-alpha.0",
+    "@ginpei/firebase-utils-react": "^0.0.1-alpha.0",
+    "@ginpei/ui-react": "^0.0.1-alpha.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
