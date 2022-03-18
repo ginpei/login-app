@@ -3,6 +3,7 @@
   "name": "login-app",
   "version": "0.0.0",
   "scripts": {
+    "build": "lerna run build --ignore app",
     "dev": "lerna run dev --parallel",
     "firebase": "cd packages/app && npm run firebase",
     "lint": "lerna run lint",
