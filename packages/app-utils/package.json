@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@ginpei/app-utils",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "main": "out/",
   "types": "out/",
   "scripts": {
